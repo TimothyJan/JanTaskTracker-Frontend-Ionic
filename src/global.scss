@@ -35,3 +35,30 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+--ion-padding: 16px;
+// --ion-background-color: #f7f2ef;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  column-gap: 5%;
+}
+
+.flex-item {
+  // padding: 1rem;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.py-5 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

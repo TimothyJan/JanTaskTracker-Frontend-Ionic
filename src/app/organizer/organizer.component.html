@@ -2,9 +2,19 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>JanTaskTracker</ion-list-header>
-          <ion-note>JanTaskTracker</ion-note>
+        <ion-list id="inbox-list" class="ion-padding-top">
+
+          <ion-list-header>
+              <ion-label>
+                <h1>
+                  JanTaskTracker
+                </h1>
+              </ion-label>
+          </ion-list-header>
+
+          <ion-note class="ion-padding-start">
+            Manage your projects and tasks effortlessly
+          </ion-note>
 
           @for (p of appPages; track p; let i = $index) {
             <ion-menu-toggle auto-hide="false">
@@ -16,6 +26,23 @@
           }
 
         </ion-list>
+
+        <div class="flex-container">
+          <div class="flex-item">
+            <ion-note>
+              Created by Timothy Jan
+              <a href="https://github.com/TimothyJan/JanTaskTracker-Frontend-Ionic" aria-label="Github" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+            </ion-note>
+          </div>
+          <div class="flex-item">
+            <ion-note>
+              <span id="current-year">{{ currentYear }}</span> JanTaskTracker All rights reserved
+            </ion-note>
+          </div>
+        </div>
+
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

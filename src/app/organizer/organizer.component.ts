@@ -19,6 +19,7 @@ export class OrganizerComponent implements OnInit {
     { title: 'Roles', url: '/roles', icon: 'person-outline' },
     { title: 'Departments', url: '/departments', icon: 'business-outline' },
   ];
+  currentYear = new Date().getFullYear();
 
   constructor() {
     addIcons({ homeOutline, readerOutline, peopleOutline, personOutline, businessOutline });
