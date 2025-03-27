@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle } from '@ionic/angular/standalone';
 
 @Component({
@@ -8,11 +8,9 @@ import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle } from '@ion
   standalone: true,
   imports: [IonHeader, IonToolbar, IonButtons, IonTitle, IonMenuButton]
 })
-export class SidemenuComponent implements OnInit {
+export class SidemenuComponent {
   @Input() title: string = "";
 
   constructor() { }
-
-  ngOnInit() {}
 
 }
