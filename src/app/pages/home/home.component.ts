@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
 import { SidemenuComponent } from "../../components/sidemenu/sidemenu.component";
 
@@ -10,10 +10,8 @@ import { SidemenuComponent } from "../../components/sidemenu/sidemenu.component"
   imports: [SidemenuComponent, IonContent]
 
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   constructor() { }
-
-  ngOnInit() {}
 
 }
