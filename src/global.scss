@@ -37,28 +37,17 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 :root {
---ion-padding: 16px;
-// --ion-background-color: #f7f2ef;
-}
-
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  column-gap: 5%;
-}
-
-.flex-item {
-  // padding: 1rem;
-}
-
-.d-flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.py-5 {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  --ion-padding: 16px;
+  // --ion-background-color: #f7f2ef;
+  --card-background-color: #f7f2ef;
+  --card-border-color: #e1ddd9;
+  --primary-color: #4e54c8;
+  --primary-color-hover: #755fa1;
+  --primary-color-disabled: #6f72c9;
+  --secondary-color: #7ba87e;
+  --secondary-color-hover: #628c65;
+  --tertiary-color: #ff4c4c;
+  --tertiary-color-hover: #d43a3a;
+  --quaternary-color: #c7cadf;
+  --quaternary-color-hover: #a8adc9;
 }
