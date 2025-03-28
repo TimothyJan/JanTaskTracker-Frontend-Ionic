@@ -8,11 +8,11 @@
 
   <ion-card-content>
     <ion-list>
+
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="9">Department Name</ion-col>
-            <ion-col size="3">Actions</ion-col>
+            <ion-col>Department Name</ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -20,56 +20,27 @@
       <ion-item *ngFor="let department of departments">
         <ion-grid>
           <ion-row>
-            <ion-col size="9">
-              <div *ngIf="editModeDepartmentId === department.departmentID">
-                <ion-input
-                  [(ngModel)]="department.departmentName"
-                  fill="outline">
-                </ion-input>
-              </div>
-              <div *ngIf="editModeDepartmentId !== department.departmentID">
+
+            <ion-col size="10">
                 {{ department.departmentName }}
-              </div>
             </ion-col>
 
-            <ion-col size="3">
+            <ion-col size="2">
               <ion-button
-                *ngIf="editModeDepartmentId !== department.departmentID"
-                (click)="enterEditMode(department.departmentID)"
-                color="light">
+                fill="clear"
+                size="small"
+                (click)="presentDepartmentActionSheet(department)">
                 <ion-icon
-                  aria-hidden="true"
                   slot="icon-only"
-                  name="create-sharp"
-                  color="tertiary">
-                </ion-icon>
-              </ion-button>
-
-              <ion-button
-                *ngIf="editModeDepartmentId === department.departmentID"
-                (click)="saveChanges(department)"
-                color="light">
-                <ion-icon
-                  aria-hidden="true"
-                  slot="icon-only"
-                  name="save-sharp"
-                  color="tertiary">
-                </ion-icon>
-              </ion-button>
-
-              <ion-button
-                (click)="onDelete(department.departmentID)"
-                color="light">
-                <ion-icon
-                  aria-hidden="true"
-                  slot="icon-only"
-                  name="trash-sharp">
+                  name="ellipsis-vertical-sharp">
                 </ion-icon>
               </ion-button>
             </ion-col>
+
           </ion-row>
         </ion-grid>
       </ion-item>
+
     </ion-list>
   </ion-card-content>
 
