@@ -8,12 +8,12 @@
 
   <ion-card-content>
     <ion-list>
+
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="4">Department</ion-col>
             <ion-col size="5">Role Name</ion-col>
-            <ion-col size="3">Actions</ion-col>
+            <ion-col size="5">Department</ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -21,69 +21,27 @@
       <ion-item *ngFor="let role of roles">
         <ion-grid>
           <ion-row>
-            <ion-col size="4">
-              <div *ngIf="editModeRoleId === role.roleID">
-                <ion-select [(ngModel)]="role.departmentID">
-                  <ion-select-option *ngFor="let department of departments" [value]="department.departmentID">
-                    {{ department.departmentName }}
-                  </ion-select-option>
-                </ion-select>
-              </div>
-              <div *ngIf="editModeRoleId !== role.roleID">
-                {{ getDepartmentName(role.departmentID) }}
-              </div>
 
+            <ion-col size="5">
+              {{ role.roleName }}
             </ion-col>
 
             <ion-col size="5">
-              <div *ngIf="editModeRoleId === role.roleID">
-                <ion-input
-                  fill="outline"
-                  [(ngModel)]="role.roleName">
-                </ion-input>
-              </div>
-              <div *ngIf="editModeRoleId !== role.roleID">
-                {{ role.roleName }}
-              </div>
+              {{ getDepartmentName(role.departmentID) }}
             </ion-col>
 
-            <ion-col size="3">
-
+            <ion-col size="2">
               <ion-button
-                *ngIf="editModeRoleId !== role.roleID"
-                (click)="enterEditMode(role.roleID)"
-                color="light">
+                fill="clear"
+                size="small"
+                (click)="presentRoleActionSheet(role)">
                 <ion-icon
-                  aria-hidden="true"
                   slot="icon-only"
-                  name="create-sharp"
-                  color="tertiary">
+                  name="ellipsis-vertical-sharp">
                 </ion-icon>
               </ion-button>
-
-              <ion-button
-                *ngIf="editModeRoleId === role.roleID"
-                (click)="saveChanges(role)"
-                color="light">
-                <ion-icon
-                  aria-hidden="true"
-                  slot="icon-only"
-                  name="save-sharp"
-                  color="tertiary">
-                </ion-icon>
-              </ion-button>
-
-              <ion-button
-                (click)="onDelete(role.roleID)"
-                color="light">
-                <ion-icon
-                  aria-hidden="true"
-                  slot="icon-only"
-                  name="trash-sharp">
-                </ion-icon>
-              </ion-button>
-
             </ion-col>
+
           </ion-row>
         </ion-grid>
       </ion-item>
