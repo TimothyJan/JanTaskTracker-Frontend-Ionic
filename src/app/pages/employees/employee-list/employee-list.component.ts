@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Department } from 'src/app/models/department.model';
 import { Employee } from 'src/app/models/employee.model';
-import { Role } from 'src/app/models/role.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { RoleService } from 'src/app/services/role.service';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonButton, IonIcon, IonGrid, IonRow, IonCol, ActionSheetController, ModalController} from '@ionic/angular/standalone';
+import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonButton, IonIcon, IonGrid, IonRow, IonCol, ActionSheetController, ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { createSharp, trashSharp, saveSharp, ellipsisVerticalSharp } from 'ionicons/icons';
+import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 
 @Component({
@@ -36,9 +34,6 @@ import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit
 export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = [];
-  departments: Department[] = [];
-  roles: Role[] = [];
-
   constructor(
     private _employeeService: EmployeeService,
     private _departmentService: DepartmentService,
@@ -46,13 +41,11 @@ export class EmployeeListComponent implements OnInit {
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController
   ) {
-    addIcons({ createSharp, trashSharp, saveSharp, ellipsisVerticalSharp });
+    addIcons({ ellipsisVerticalSharp });
   }
 
   ngOnInit(): void {
     this.loadEmployees();
-    this.departments = this._departmentService.getDepartments();
-    this.roles = this._roleService.getRoles();
   }
 
   /** Load all Employees */
@@ -109,6 +102,7 @@ export class EmployeeListComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirm') {
+      this.loadEmployees();
       console.log(data, role);
     }
   }

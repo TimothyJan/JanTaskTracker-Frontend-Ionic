@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Edit Employee</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-input
+      label="Employee Name:"
+      value={{employee.name}}
+      [(ngModel)]="employee.name">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select
+      placeholder="Select a Department"
+      (ionChange)="changeFilteredRoles($event)"
+      [(ngModel)]="employee.departmentID">
+      >
+      <div slot="label">Department</div>
+      <ion-select-option
+        *ngFor="let department of departments"
+        [value]="department.departmentID">
+        {{ department.departmentName }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select
+      placeholder="Select a Role"
+      [(ngModel)]="employee.roleID">
+      <div slot="label">Role</div>
+      <ion-select-option *ngFor="let role of filteredRoles" [value]="role.roleID">
+        {{ role.roleName }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+</ion-content>
