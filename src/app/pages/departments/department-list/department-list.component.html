@@ -11,9 +11,8 @@
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="auto">ID</ion-col>
-            <ion-col size="8">Department Name</ion-col>
-            <ion-col size="auto">Actions</ion-col>
+            <ion-col size="9">Department Name</ion-col>
+            <ion-col size="3">Actions</ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -21,12 +20,11 @@
       <ion-item *ngFor="let department of departments">
         <ion-grid>
           <ion-row>
-            <ion-col size="1">{{ department.departmentID }}</ion-col>
-
-            <ion-col size="8">
+            <ion-col size="9">
               <div *ngIf="editModeDepartmentId === department.departmentID">
                 <ion-input
-                  [(ngModel)]="department.departmentName">
+                  [(ngModel)]="department.departmentName"
+                  fill="outline">
                 </ion-input>
               </div>
               <div *ngIf="editModeDepartmentId !== department.departmentID">
@@ -35,7 +33,6 @@
             </ion-col>
 
             <ion-col size="3">
-
               <ion-button
                 *ngIf="editModeDepartmentId !== department.departmentID"
                 (click)="enterEditMode(department.departmentID)"
@@ -69,7 +66,6 @@
                   name="trash-sharp">
                 </ion-icon>
               </ion-button>
-
             </ion-col>
           </ion-row>
         </ion-grid>
