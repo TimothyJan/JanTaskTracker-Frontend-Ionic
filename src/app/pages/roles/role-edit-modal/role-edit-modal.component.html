@@ -15,15 +15,15 @@
   <ion-item>
     <ion-input
       label="Role Name:"
-      value={{role.roleName}}
-      [(ngModel)]="role.roleName">
+      value={{editedRole.roleName}}
+      [(ngModel)]="editedRole.roleName">
     </ion-input>
   </ion-item>
 
   <ion-item>
     <ion-select
       placeholder="Select a Department"
-      [(ngModel)]="role.departmentID">
+      [(ngModel)]="editedRole.departmentID">
       >
       <div slot="label">Department</div>
       <ion-select-option

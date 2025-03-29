@@ -34,7 +34,8 @@ import { DepartmentService } from 'src/app/services/department.service';
 })
 export class DepartmentEditModalComponent implements OnInit {
   @Input() departmentID: number = -1;
-  department: Department = {departmentID: -1, departmentName: ""};
+  originalDepartment: Department = {departmentID: -1, departmentName: ""};
+  editedDepartment: Department = {departmentID: -1, departmentName: ""}; // Working copy
 
   constructor(
     private modalCtrl: ModalController,
@@ -42,12 +43,19 @@ export class DepartmentEditModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getEmployee();
+    this.getDepartment();
   }
 
   /** Get Employee */
-  getEmployee(): void {
-    this.department = this._departmentService.getDepartment(this.departmentID)!;
+  getDepartment(): void {
+    const dept = this._departmentService.getDepartment(this.departmentID);
+    if (!dept) {
+      console.error('Department not found');
+      this.modalCtrl.dismiss(null, 'error');
+      return;
+    }
+    this.originalDepartment = {...dept};
+    this.editedDepartment = {...dept};
   }
 
   /** Cancel and close modal */
@@ -63,7 +71,7 @@ export class DepartmentEditModalComponent implements OnInit {
 
   /** Save Changes */
   saveChanges(): void {
-    this._departmentService.updateDepartment(this.department);
+    this._departmentService.updateDepartment(this.editedDepartment);
     this._departmentService.notifyDepartmentsChanged();
   }
 

@@ -43,7 +43,8 @@ import { RoleService } from 'src/app/services/role.service';
 })
 export class EmployeeEditModalComponent  implements OnInit {
   @Input() employeeID: number = -1;
-  employee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
+  originalEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
+  edittedEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
   departments: Department[] = [];
   filteredRoles: Role[] = [];
 
@@ -57,17 +58,24 @@ export class EmployeeEditModalComponent  implements OnInit {
   ngOnInit() {
     this.getEmployee();
     this.departments = this._departmentService.getDepartments();
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.employee.departmentID)
+    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.originalEmployee.departmentID)
   }
 
   /** Get Employee */
   getEmployee(): void {
-    this.employee = this._employeeService.getEmployee(this.employeeID)!;
+    const employee = this._employeeService.getEmployee(this.employeeID);
+    if (!employee) {
+      console.error('Employee not found');
+      this.modalCtrl.dismiss(null, 'error');
+      return;
+    }
+    this.originalEmployee = {...employee};
+    this.edittedEmployee = {...employee};
   }
 
   /** When department selection changes update the filteredRoles */
   changeFilteredRoles(event: CustomEvent): void {
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.employee.departmentID)
+    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.edittedEmployee.departmentID)
   }
 
   /** Camcel and close modal */
@@ -77,12 +85,13 @@ export class EmployeeEditModalComponent  implements OnInit {
 
   /** Confirm save and close modal */
   confirm() {
+    this.saveChanges();
     return this.modalCtrl.dismiss(this.employeeID, 'confirm');
   }
 
   /** save Changes */
   saveChanges(): void {
-    this._employeeService.updateEmployee(this.employee);
+    this._employeeService.updateEmployee(this.edittedEmployee);
     this._employeeService.notifyEmployeesChanged();
   }
 

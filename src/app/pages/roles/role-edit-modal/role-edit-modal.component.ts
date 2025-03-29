@@ -42,7 +42,8 @@ import { RoleService } from 'src/app/services/role.service';
 export class RoleEditModalComponent  implements OnInit {
   @Input() roleID: number = -1;
   departments: Department[] = [];
-  role: Role = {roleID: -1, roleName: "", departmentID: -1};
+  originalRole: Role = {roleID: -1, roleName: "", departmentID: -1};
+  editedRole: Role = {roleID: -1, roleName: "", departmentID: -1}; // Working copy
 
   constructor(
     private modalCtrl: ModalController,
@@ -57,7 +58,14 @@ export class RoleEditModalComponent  implements OnInit {
 
   /** Get Employee */
   getRole(): void {
-    this.role = this._roleService.getRole(this.roleID)!;
+    const role = this._roleService.getRole(this.roleID);
+    if (!role) {
+      console.error('Role not found');
+      this.modalCtrl.dismiss(null, 'error');
+      return;
+    }
+    this.originalRole = {...role};
+    this.editedRole = {...role};
   }
 
   /** Camcel and close modal */
@@ -67,12 +75,13 @@ export class RoleEditModalComponent  implements OnInit {
 
   /** Confirm save and close modal */
   confirm() {
+    this.saveChanges();
     return this.modalCtrl.dismiss(this.roleID, 'confirm');
   }
 
   /** save Changes */
   saveChanges(): void {
-    this._roleService.updateRole(this.role);
+    this._roleService.updateRole(this.editedRole);
     this._roleService.notifyRolesChanged();
   }
 
