@@ -34,7 +34,7 @@ export class EmployeeCreateComponent implements OnInit {
 
   employeeForm: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
-    salary: new FormControl(0,  Validators.min(0)),
+    salary: new FormControl(0, [Validators.min(0), Validators.required]),
     departmentID: new FormControl(-1, Validators.required),
     roleID: new FormControl(null, Validators.required)
   });
@@ -47,6 +47,7 @@ export class EmployeeCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.departments = this._departmentService.getDepartments();
+    this.capitalizeEmployeeName();
   }
 
   /** Department change updates the roles array to the selected Department Roles  */
@@ -71,6 +72,18 @@ export class EmployeeCreateComponent implements OnInit {
       this.employeeForm.reset();
       this._employeeService.notifyEmployeesChanged();
     }
+  }
+
+  /** Capitalize employee name input */
+  capitalizeEmployeeName(): void {
+    this.employeeForm.get('name')?.valueChanges.subscribe(val => {
+      if (val) {
+        this.employeeForm.get('name')?.setValue(
+          val.toUpperCase(),
+          { emitEvent: false }  // Prevents infinite loop
+        );
+      }
+    });
   }
 
 }

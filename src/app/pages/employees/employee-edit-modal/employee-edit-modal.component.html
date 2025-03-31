@@ -16,6 +16,7 @@
     <ion-input
       label="Employee Name:"
       value={{edittedEmployee.name}}
+      (ionInput)="onEmployeeNameInput($event)"
       [(ngModel)]="edittedEmployee.name">
     </ion-input>
   </ion-item>
@@ -44,6 +45,15 @@
         {{ role.roleName }}
       </ion-select-option>
     </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      type="number"
+      label="Salary:"
+      value={{edittedEmployee.salary}}
+      [(ngModel)]="edittedEmployee.salary">
+    </ion-input>
   </ion-item>
 
 </ion-content>

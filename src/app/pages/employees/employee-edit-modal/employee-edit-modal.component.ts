@@ -58,7 +58,7 @@ export class EmployeeEditModalComponent  implements OnInit {
   ngOnInit() {
     this.getEmployee();
     this.departments = this._departmentService.getDepartments();
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.originalEmployee.departmentID)
+    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.originalEmployee.departmentID);
   }
 
   /** Get Employee */
@@ -93,6 +93,14 @@ export class EmployeeEditModalComponent  implements OnInit {
   saveChanges(): void {
     this._employeeService.updateEmployee(this.edittedEmployee);
     this._employeeService.notifyEmployeesChanged();
+  }
+
+  /** Capitalize Employee name input */
+  onEmployeeNameInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement?.value) {
+      this.edittedEmployee.name = inputElement.value.toUpperCase();
+    }
   }
 
 }

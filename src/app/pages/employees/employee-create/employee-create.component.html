@@ -15,7 +15,7 @@
         placeholder="Select a Department"
         (ionChange)="departmentSelectionChange($event)"
         >
-        <div slot="label">Department</div>
+        <div slot="label">Department: </div>
         <ion-select-option *ngFor="let department of departments" [value]="department.departmentID">
           {{ department.departmentName }}
         </ion-select-option>
@@ -35,8 +35,16 @@
       </div>
 
       <ion-input
+        id="employeeSalary"
+        type="number"
+        label="Salary: "
+        formControlName="salary"
+        placeholder="Enter Employee Salary">
+      </ion-input>
+
+      <ion-input
         id="employeeName"
-        label="Employee Name"
+        label="Employee Name: "
         formControlName="name"
         placeholder="Enter Employee Name">
       </ion-input>

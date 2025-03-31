@@ -12,10 +12,10 @@ export class EmployeeService {
   employeeID:number = 4;
 
   employees: Employee[] = [
-    new Employee(0, "Alice Johnson", 60000, 0, 0),
-    new Employee(1, "Bob Smith", 70000, 0, 1),
-    new Employee(2, "Catherine Green", 65000, 1, 4),
-    new Employee(3, "David Brown", 90000, 2, 6),
+    new Employee(0, "ALICE JOHNSON", 60000, 0, 0),
+    new Employee(1, "BOB SMITH", 70000, 0, 1),
+    new Employee(2, "CATHERINE GREEN", 65000, 1, 4),
+    new Employee(3, "DAVID BROWN", 90000, 2, 6),
   ];
 
   constructor() { }
