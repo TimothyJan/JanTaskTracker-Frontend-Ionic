@@ -16,6 +16,7 @@
     <ion-input
       label="Role Name:"
       value={{editedRole.roleName}}
+      (ionInput)="onRoleNameInput($event)"
       [(ngModel)]="editedRole.roleName">
     </ion-input>
   </ion-item>

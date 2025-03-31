@@ -14,6 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department.service';
+
 @Component({
   selector: 'app-department-edit-modal',
   templateUrl: './department-edit-modal.component.html',
@@ -73,6 +74,14 @@ export class DepartmentEditModalComponent implements OnInit {
   saveChanges(): void {
     this._departmentService.updateDepartment(this.editedDepartment);
     this._departmentService.notifyDepartmentsChanged();
+  }
+
+  /** Capitalize departmentName input */
+  onDepartmentNameInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement?.value) {
+      this.editedDepartment.departmentName = inputElement.value.toUpperCase();
+    }
   }
 
 }

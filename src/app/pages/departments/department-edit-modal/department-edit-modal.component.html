@@ -16,6 +16,7 @@
     <ion-input
       label="Department Name:"
       value={{editedDepartment.departmentName}}
+      (ionInput)="onDepartmentNameInput($event)"
       [(ngModel)]="editedDepartment.departmentName">
     </ion-input>
   </ion-item>

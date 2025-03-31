@@ -38,10 +38,11 @@ export class RoleCreateComponent implements OnInit {
     private _roleService: RoleService,
     private _departmentService: DepartmentService,
     private _toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getDepartments();
+    this.capitalizeRoleName();
   }
 
   /** Get departments from Department Service */
@@ -50,8 +51,6 @@ export class RoleCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Make Uppercase
-    this.roleForm.controls["roleName"].setValue(this.roleForm.controls["roleName"].value.toUpperCase());
     if (this.roleForm.valid) {
       const formValue = {
         ...this.roleForm.value,
@@ -69,6 +68,18 @@ export class RoleCreateComponent implements OnInit {
     else {
       this._toastService.presentErrorToast("Role failed to be created.");
     }
+  }
+
+  /** Capitalize departmentName input */
+  capitalizeRoleName(): void {
+    this.roleForm.get('roleName')?.valueChanges.subscribe(val => {
+      if (val) {
+        this.roleForm.get('roleName')?.setValue(
+          val.toUpperCase(),
+          { emitEvent: false }  // Prevents infinite loop
+        );
+      }
+    });
   }
 
 }

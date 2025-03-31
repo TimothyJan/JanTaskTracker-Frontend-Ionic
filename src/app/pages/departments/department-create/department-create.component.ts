@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DepartmentService } from 'src/app/services/department.service';
@@ -21,7 +21,7 @@ import { ToastService } from 'src/app/services/toast.service';
     IonInput,
     IonButton],
 })
-export class DepartmentCreateComponent {
+export class DepartmentCreateComponent implements OnInit{
 
   departmentForm: FormGroup = new FormGroup({
     departmentName: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)])
@@ -30,11 +30,13 @@ export class DepartmentCreateComponent {
   constructor(
     private _departmentService: DepartmentService,
     private _toastService: ToastService
-  ) {}
+  ) { }
+
+  ngOnInit(): void {
+    this.capitalizeDepartmentName();
+  }
 
   onSubmit() {
-    // Make Uppercase
-    this.departmentForm.controls["departmentName"].setValue(this.departmentForm.controls["departmentName"].value.toUpperCase());
     if (this.departmentForm.valid) {
       // Check for duplicates
       if (!this._departmentService.checkDuplicates(this.departmentForm.controls["departmentName"].value)) {
@@ -50,6 +52,18 @@ export class DepartmentCreateComponent {
     else {
       this._toastService.presentErrorToast("Department failed to be created.");
     }
+  }
+
+  /** Capitalize departmentName input */
+  capitalizeDepartmentName(): void {
+    this.departmentForm.get('departmentName')?.valueChanges.subscribe(val => {
+      if (val) {
+        this.departmentForm.get('departmentName')?.setValue(
+          val.toUpperCase(),
+          { emitEvent: false }  // Prevents infinite loop
+        );
+      }
+    });
   }
 
 }

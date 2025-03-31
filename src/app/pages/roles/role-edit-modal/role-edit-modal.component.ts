@@ -79,10 +79,18 @@ export class RoleEditModalComponent  implements OnInit {
     return this.modalCtrl.dismiss(this.roleID, 'confirm');
   }
 
-  /** save Changes */
+  /** Save Changes */
   saveChanges(): void {
     this._roleService.updateRole(this.editedRole);
     this._roleService.notifyRolesChanged();
+  }
+
+  /** Capitalize roleName input */
+  onRoleNameInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement?.value) {
+      this.editedRole.roleName = inputElement.value.toUpperCase();
+    }
   }
 
 }

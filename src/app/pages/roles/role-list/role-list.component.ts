@@ -35,7 +35,6 @@ export class RoleListComponent implements OnInit {
   roles: Role[] = [];
   departments: Department[] = [];
   editModeRoleId: number | null = null;
-  isLoading: boolean = false;
 
   constructor(
     private _departmentService: DepartmentService,
@@ -52,16 +51,12 @@ export class RoleListComponent implements OnInit {
   }
 
   loadDepartments(): void {
-    this.isLoading = true;
     this.departments = this._departmentService.getDepartments();
-    this.isLoading = false;
   }
 
   /** Load all roles */
   loadRoles(): void {
-    this.isLoading = true;
     this.roles = this._roleService.getRoles();
-    this.isLoading = false;
   }
 
   /** Get Department name from DepartmentID */
