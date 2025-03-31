@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { OrganizerComponent } from "./organizer/organizer.component";
+import { OrganizerComponent } from "./components/organizer/organizer.component";
 
 @Component({
   selector: 'app-root',
