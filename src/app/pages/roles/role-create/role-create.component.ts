@@ -5,6 +5,7 @@ import { Department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { RoleService } from 'src/app/services/role.service';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonButton, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-role-create',
@@ -35,7 +36,8 @@ export class RoleCreateComponent implements OnInit {
 
   constructor(
     private _roleService: RoleService,
-    private _departmentService: DepartmentService
+    private _departmentService: DepartmentService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -48,15 +50,24 @@ export class RoleCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
+    // Make Uppercase
+    this.roleForm.controls["roleName"].setValue(this.roleForm.controls["roleName"].value.toUpperCase());
     if (this.roleForm.valid) {
       const formValue = {
         ...this.roleForm.value,
         departmentID: Number(this.roleForm.value.departmentID)
       };
-      // console.log('Form Submitted:', formValue);
-      this._roleService.addRole(formValue);
-      this.roleForm.reset();
-      this._roleService.notifyRolesChanged();
+      if(!this._roleService.checkDuplicates(formValue)) {
+        this._roleService.addRole(formValue);
+        this.roleForm.reset();
+        this._roleService.notifyRolesChanged();
+      }
+      else {
+        this._toastService.presentErrorToast("Role already exists.")
+      }
+    }
+    else {
+      this._toastService.presentErrorToast("Role failed to be created.");
     }
   }
 

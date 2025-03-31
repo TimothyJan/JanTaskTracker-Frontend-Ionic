@@ -12,16 +12,16 @@ export class RoleService {
   roleID: number = 10;
 
   roles: Role[] = [
-    new Role(0, "Accountant", 0),
-    new Role(1, "Financial Analyst", 0),
-    new Role(2, "Finance Manager", 0),
-    new Role(3, "HR Assistant", 1),
-    new Role(4, "HR Specialist", 1),
-    new Role(5, "HR Director", 1),
-    new Role(6, "Software Engineer", 2),
-    new Role(7, "Front-End Developer", 2),
-    new Role(8, "Back-End Developer", 2),
-    new Role(9, "Full-Stack Developer", 2),
+    new Role(0, "ACCOUNTANT", 0),
+    new Role(1, "FINANCIAL ANALYST", 0),
+    new Role(2, "FINANCE MANAGER", 0),
+    new Role(3, "HR ASSISTANT", 1),
+    new Role(4, "HR SPECIALIST", 1),
+    new Role(5, "HR DIRECTOR", 1),
+    new Role(6, "SOFTWARE ENGINEER", 2),
+    new Role(7, "FRONT-END DEVELOPER", 2),
+    new Role(8, "BACK-END DEVELOPER", 2),
+    new Role(9, "FULL-STACK DEVELOPER", 2),
   ];
 
   constructor() { }
@@ -80,5 +80,15 @@ export class RoleService {
   /** Emit events for roles update */
   notifyRolesChanged(): void {
     this.rolesChangedSource.next();
+  }
+
+  /** Checks for duplicate department names */
+  checkDuplicates(role: Role): boolean {
+    for(let i=0; i<this.roles.length; i++) {
+      if(this.roles[i].roleName == role.roleName && this.roles[i].departmentID == role.departmentID) {
+        return true;
+      }
+    }
+    return false;
   }
 }

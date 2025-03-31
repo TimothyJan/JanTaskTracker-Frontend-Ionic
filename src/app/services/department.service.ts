@@ -13,9 +13,9 @@ export class DepartmentService {
   departmentID: number = 3;
 
   departments: Department[] = [
-    new Department(0, "Finance"),
-    new Department(1, "Human Resources"),
-    new Department(2, "Information Technology")
+    new Department(0, "FINANCE"),
+    new Department(1, "HUMAN RESOURCES"),
+    new Department(2, "INFORMATION TECHNOLOGY")
   ];
 
   constructor() { }
@@ -36,7 +36,7 @@ export class DepartmentService {
   }
 
   /** Post new Department */
-  addDepartment(department: Department): void {
+  createDepartment(department: Department): void {
     let newDepartment = new Department(this.departmentID++, department.departmentName);
     this.departments.push(newDepartment);
     // console.log(this.departments);
@@ -63,6 +63,16 @@ export class DepartmentService {
   /** Emit events for departments update */
   notifyDepartmentsChanged(): void {
     this.departmentsChangedSource.next();
+  }
+
+  /** Checks for duplicate department names */
+  checkDuplicates(departmentName: string): boolean {
+    for(let i=0; i<this.departments.length; i++) {
+      if(this.departments[i].departmentName == departmentName.toUpperCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
