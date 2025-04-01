@@ -6,7 +6,16 @@ import { Role } from 'src/app/models/role.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { RoleService } from 'src/app/services/role.service';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonButton, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonInput,
+  IonButton,
+  IonSelect,
+  IonSelectOption
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-employee-create',
