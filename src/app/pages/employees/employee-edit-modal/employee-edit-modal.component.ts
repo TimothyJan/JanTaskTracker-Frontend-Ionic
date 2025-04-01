@@ -7,6 +7,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonList,
   IonItem,
   IonTitle,
   IonToolbar,
@@ -33,6 +34,7 @@ import { RoleService } from 'src/app/services/role.service';
     IonButtons,
     IonContent,
     IonHeader,
+    IonList,
     IonItem,
     IonTitle,
     IonToolbar,
@@ -41,7 +43,7 @@ import { RoleService } from 'src/app/services/role.service';
     IonSelectOption
   ],
 })
-export class EmployeeEditModalComponent  implements OnInit {
+export class EmployeeEditModalComponent implements OnInit {
   @Input() employeeID: number = -1;
   originalEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
   edittedEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
