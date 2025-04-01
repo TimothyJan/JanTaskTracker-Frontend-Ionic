@@ -4,7 +4,16 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { Department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { RoleService } from 'src/app/services/role.service';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonButton, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonInput,
+  IonButton,
+  IonSelect,
+  IonSelectOption
+} from '@ionic/angular/standalone';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({

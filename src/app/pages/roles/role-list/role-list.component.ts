@@ -5,7 +5,21 @@ import { DepartmentService } from 'src/app/services/department.service';
 import { RoleService } from 'src/app/services/role.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonButton, IonIcon, IonGrid, IonRow, IonCol, ActionSheetController, ModalController} from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonList,
+  IonItem,
+  IonButton,
+  IonIcon,
+  IonGrid,
+  IonRow,
+  IonCol,
+  ActionSheetController,
+  ModalController
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { RoleEditModalComponent } from '../role-edit-modal/role-edit-modal.component';
@@ -63,13 +77,6 @@ export class RoleListComponent implements OnInit {
   getDepartmentName(departmentID: number): string | undefined {
     const department = this.departments.find(dep => dep.departmentID == departmentID);
     return department ? department.departmentName : undefined;
-  }
-
-  /** Leave Edit mode and save changes */
-  saveChanges(role: Role): void {
-    this._roleService.updateRole(role);
-    this.editModeRoleId = null;
-    this.loadRoles(); // Reload roles to reflect changes
   }
 
   /** Action Sheet Controller */
