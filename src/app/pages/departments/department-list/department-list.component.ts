@@ -3,7 +3,21 @@ import { Component, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department.service';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonButton, IonIcon, IonGrid, IonRow, IonCol, ActionSheetController, ModalController } from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonList,
+  IonItem,
+  IonButton,
+  IonIcon,
+  IonGrid,
+  IonRow,
+  IonCol,
+  ActionSheetController,
+  ModalController
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { DepartmentEditModalComponent } from '../department-edit-modal/department-edit-modal.component';
@@ -54,13 +68,6 @@ export class DepartmentListComponent implements OnInit {
   /** Enter Edit mode for editting Department list */
   enterEditMode(departmentId: number): void {
     this.editModeDepartmentId = departmentId;
-  }
-
-  /** Update Department and leave Edit mode */
-  saveChanges(department: Department): void {
-    this._departmentService.updateDepartment(department);
-    this.editModeDepartmentId = null;
-    this.loadDepartments(); // Reload departments to reflect changes
   }
 
   /** Action Sheet Controller */

@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DepartmentService } from 'src/app/services/department.service';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonButton } from '@ionic/angular/standalone';
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonInput,
+  IonButton
+} from '@ionic/angular/standalone';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
