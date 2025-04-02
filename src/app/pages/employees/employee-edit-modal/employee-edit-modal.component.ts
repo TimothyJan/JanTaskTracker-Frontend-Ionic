@@ -46,7 +46,7 @@ import { RoleService } from 'src/app/services/role.service';
 export class EmployeeEditModalComponent implements OnInit {
   @Input() employeeID: number = -1;
   originalEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
-  edittedEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
+  editedEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
   departments: Department[] = [];
   filteredRoles: Role[] = [];
 
@@ -72,12 +72,12 @@ export class EmployeeEditModalComponent implements OnInit {
       return;
     }
     this.originalEmployee = {...employee};
-    this.edittedEmployee = {...employee};
+    this.editedEmployee = {...employee};
   }
 
   /** When department selection changes update the filteredRoles */
   changeFilteredRoles(event: CustomEvent): void {
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.edittedEmployee.departmentID)
+    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.editedEmployee.departmentID)
   }
 
   /** Camcel and close modal */
@@ -93,7 +93,7 @@ export class EmployeeEditModalComponent implements OnInit {
 
   /** save Changes */
   saveChanges(): void {
-    this._employeeService.updateEmployee(this.edittedEmployee);
+    this._employeeService.updateEmployee(this.editedEmployee);
     this._employeeService.notifyEmployeesChanged();
   }
 
@@ -101,7 +101,7 @@ export class EmployeeEditModalComponent implements OnInit {
   onEmployeeNameInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement?.value) {
-      this.edittedEmployee.name = inputElement.value.toUpperCase();
+      this.editedEmployee.name = inputElement.value.toUpperCase();
     }
   }
 

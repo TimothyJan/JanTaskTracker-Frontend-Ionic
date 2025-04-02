@@ -16,9 +16,9 @@
     <ion-item>
       <ion-input
         label="Employee Name:"
-        value={{edittedEmployee.name}}
+        value={{editedEmployee.name}}
         (ionInput)="onEmployeeNameInput($event)"
-        [(ngModel)]="edittedEmployee.name">
+        [(ngModel)]="editedEmployee.name">
       </ion-input>
     </ion-item>
 
@@ -26,7 +26,7 @@
       <ion-select
         placeholder="Select a Department"
         (ionChange)="changeFilteredRoles($event)"
-        [(ngModel)]="edittedEmployee.departmentID">
+        [(ngModel)]="editedEmployee.departmentID">
         >
         <div slot="label">Department</div>
         <ion-select-option
@@ -40,7 +40,7 @@
     <ion-item>
       <ion-select
         placeholder="Select a Role"
-        [(ngModel)]="edittedEmployee.roleID">
+        [(ngModel)]="editedEmployee.roleID">
         <div slot="label">Role</div>
         <ion-select-option *ngFor="let role of filteredRoles" [value]="role.roleID">
           {{ role.roleName }}
@@ -52,8 +52,8 @@
       <ion-input
         type="number"
         label="Salary:"
-        value={{edittedEmployee.salary}}
-        [(ngModel)]="edittedEmployee.salary">
+        value={{editedEmployee.salary}}
+        [(ngModel)]="editedEmployee.salary">
       </ion-input>
     </ion-item>
 
