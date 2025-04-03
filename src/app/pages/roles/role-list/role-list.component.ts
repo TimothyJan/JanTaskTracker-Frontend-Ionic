@@ -23,6 +23,7 @@ import {
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { RoleEditModalComponent } from '../role-edit-modal/role-edit-modal.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-role-list',
@@ -54,7 +55,8 @@ export class RoleListComponent implements OnInit {
     private _departmentService: DepartmentService,
     private _roleService: RoleService,
     private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private _toastService: ToastService
   ) {
     addIcons({ ellipsisVerticalSharp });
   }
@@ -129,6 +131,7 @@ export class RoleListComponent implements OnInit {
     if (confirmDelete) {
       this._roleService.deleteRole(roleID);
       this.loadRoles();
+      this._toastService.presentSuccessToast("Role deleted.");
     }
   }
 

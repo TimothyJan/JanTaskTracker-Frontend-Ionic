@@ -16,6 +16,7 @@ import {
   IonSelect,
   IonSelectOption
 } from '@ionic/angular/standalone';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-employee-create',
@@ -51,7 +52,8 @@ export class EmployeeCreateComponent implements OnInit {
   constructor(
     private _employeeService: EmployeeService,
     private _departmentService: DepartmentService,
-    private _roleService: RoleService
+    private _roleService: RoleService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -80,6 +82,10 @@ export class EmployeeCreateComponent implements OnInit {
       this._employeeService.addEmployee(formValue);
       this.employeeForm.reset();
       this._employeeService.notifyEmployeesChanged();
+      this._toastService.presentSuccessToast("Employee created.");
+    }
+    else {
+      this._toastService.presentErrorToast("Employee failed to be created.");
     }
   }
 

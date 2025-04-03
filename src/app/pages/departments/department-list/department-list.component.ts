@@ -21,6 +21,7 @@ import {
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { DepartmentEditModalComponent } from '../department-edit-modal/department-edit-modal.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-department-list',
@@ -51,7 +52,8 @@ export class DepartmentListComponent implements OnInit {
   constructor(
     private _departmentService: DepartmentService,
     private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private _toastService: ToastService
   ) {
     addIcons({ ellipsisVerticalSharp });
   }
@@ -120,6 +122,7 @@ export class DepartmentListComponent implements OnInit {
     if (confirmDelete) {
       this._departmentService.deleteDepartment(departmentID);
       this.loadDepartments();
+      this._toastService.presentSuccessToast("Department deleted.");
     }
   }
 

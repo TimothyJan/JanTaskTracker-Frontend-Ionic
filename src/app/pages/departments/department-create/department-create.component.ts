@@ -48,9 +48,9 @@ export class DepartmentCreateComponent implements OnInit{
       // Check for duplicates
       if (!this._departmentService.checkDuplicates(this.departmentForm.controls["departmentName"].value)) {
         this._departmentService.createDepartment(this.departmentForm.value);
-        this._toastService.presentSuccessToast("Department created!");
         this.departmentForm.reset();
         this._departmentService.notifyDepartmentsChanged();
+        this._toastService.presentSuccessToast("Department created.");
       }
       else {
         this._toastService.presentErrorToast("Department already exists.");

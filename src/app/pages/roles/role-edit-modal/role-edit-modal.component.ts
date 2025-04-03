@@ -18,6 +18,7 @@ import { Department } from 'src/app/models/department.model';
 import { Role } from 'src/app/models/role.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { RoleService } from 'src/app/services/role.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-role-edit-modal',
@@ -48,7 +49,8 @@ export class RoleEditModalComponent  implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private _departmentService: DepartmentService,
-    private _roleService: RoleService
+    private _roleService: RoleService,
+    private _toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -83,6 +85,7 @@ export class RoleEditModalComponent  implements OnInit {
   saveChanges(): void {
     this._roleService.updateRole(this.editedRole);
     this._roleService.notifyRolesChanged();
+    this._toastService.presentSuccessToast("Role saved.");
   }
 
   /** Capitalize roleName input */

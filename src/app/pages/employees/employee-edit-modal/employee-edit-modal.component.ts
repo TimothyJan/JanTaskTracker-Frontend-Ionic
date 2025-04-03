@@ -21,6 +21,7 @@ import { Role } from 'src/app/models/role.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { RoleService } from 'src/app/services/role.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-employee-edit-modal',
@@ -55,6 +56,7 @@ export class EmployeeEditModalComponent implements OnInit {
     private _employeeService: EmployeeService,
     private _departmentService: DepartmentService,
     private _roleService: RoleService,
+    private _toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -95,6 +97,7 @@ export class EmployeeEditModalComponent implements OnInit {
   saveChanges(): void {
     this._employeeService.updateEmployee(this.editedEmployee);
     this._employeeService.notifyEmployeesChanged();
+    this._toastService.presentSuccessToast("Employee saved.");
   }
 
   /** Capitalize Employee name input */

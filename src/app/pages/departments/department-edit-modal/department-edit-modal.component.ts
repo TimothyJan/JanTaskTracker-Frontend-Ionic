@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-department-edit-modal',
@@ -42,7 +43,8 @@ export class DepartmentEditModalComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private _departmentService: DepartmentService
+    private _departmentService: DepartmentService,
+    private _toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -76,6 +78,7 @@ export class DepartmentEditModalComponent implements OnInit {
   saveChanges(): void {
     this._departmentService.updateDepartment(this.editedDepartment);
     this._departmentService.notifyDepartmentsChanged();
+    this._toastService.presentSuccessToast("Department saved.");
   }
 
   /** Capitalize departmentName input */

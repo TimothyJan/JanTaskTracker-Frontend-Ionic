@@ -23,6 +23,7 @@ import {
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -53,7 +54,8 @@ export class EmployeeListComponent implements OnInit {
     private _departmentService: DepartmentService,
     private _roleService: RoleService,
     private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private _toastService: ToastService
   ) {
     addIcons({ ellipsisVerticalSharp });
   }
@@ -127,6 +129,7 @@ export class EmployeeListComponent implements OnInit {
     if (confirmDelete) {
       this._employeeService.deleteEmployee(employeeID);
       this.loadEmployees();
+      this._toastService.presentSuccessToast("Employee deleted.");
     }
   }
 

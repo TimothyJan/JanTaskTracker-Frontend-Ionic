@@ -69,6 +69,7 @@ export class RoleCreateComponent implements OnInit {
         this._roleService.addRole(formValue);
         this.roleForm.reset();
         this._roleService.notifyRolesChanged();
+        this._toastService.presentSuccessToast("Role created.");
       }
       else {
         this._toastService.presentErrorToast("Role already exists.")
