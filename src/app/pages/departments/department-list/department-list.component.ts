@@ -20,7 +20,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
-import { DepartmentEditModalComponent } from '../department-edit-modal/department-edit-modal.component';
+import { DepartmentEditModalComponent } from '../../../components/modals/department-edit-modal/department-edit-modal.component';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({

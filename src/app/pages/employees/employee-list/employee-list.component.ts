@@ -22,7 +22,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
-import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
+import { EmployeeEditModalComponent } from '../../../components/modals/employee-edit-modal/employee-edit-modal.component';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({

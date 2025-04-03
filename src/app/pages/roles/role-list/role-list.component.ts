@@ -22,7 +22,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
-import { RoleEditModalComponent } from '../role-edit-modal/role-edit-modal.component';
+import { RoleEditModalComponent } from '../../../components/modals/role-edit-modal/role-edit-modal.component';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
