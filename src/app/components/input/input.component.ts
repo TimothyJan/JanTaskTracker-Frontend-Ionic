@@ -18,11 +18,10 @@ import {
 })
 export class InputComponent {
   @Input() value: string = "";
-  @Output() valueChanged = new EventEmitter<string>();
-
-  // Optionally add input configuration
   @Input() label: string = "Text";
   placeholder: string = `Enter ${this.label}`;
+
+  @Output() valueChanged = new EventEmitter<string>();
 
   onInputChange(event: any) {
     this.value = event.target.value;
