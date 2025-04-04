@@ -21,7 +21,7 @@ export class InputComponent implements OnInit {
   @Output() valueChanged = new EventEmitter<string>();
 
   // Optionally add input configuration
-  @Input() label: string = "Text Input";
+  @Input() label: string = "Text";
   placeholder: string = `Enter ${this.label}`;
 
   onInputChange(event: any) {
