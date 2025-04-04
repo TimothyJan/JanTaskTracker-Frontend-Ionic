@@ -1,6 +1,15 @@
 <app-sidemenu [title]="'Projects'"></app-sidemenu>
 
 <ion-content class="ion-padding">
-  <h1>Welcome to the Project Page</h1>
-  <!-- <ion-button expand="block" (click)="openMenu()">Open Menu</ion-button> -->
+
+  <div class="ion-text-center">
+    <ion-button (click)="openProjectTaskCreateModal()">Create New Project</ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let projectID of listOfProjectIDs">
+      <app-project [projectID]="projectID"></app-project>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
