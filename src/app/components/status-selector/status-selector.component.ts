@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   IonSelect,
   IonSelectOption
@@ -16,15 +16,13 @@ import {
     IonSelectOption
   ]
 })
-export class StatusSelectorComponent implements OnInit {
+export class StatusSelectorComponent {
   @Input() status?: string = "";
   @Output() statusSelectedEvent = new EventEmitter<string>();
 
   statuses: string[] = ["Not Started", "Active", "Completed"];
 
   constructor() { }
-
-  ngOnInit() {}
 
   onStatusChange(selectedValue: any) {
     this.status = selectedValue.detail.value;
