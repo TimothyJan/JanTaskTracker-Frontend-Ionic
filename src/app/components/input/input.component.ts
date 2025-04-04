@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonInput
@@ -16,7 +16,7 @@ import {
     IonInput
   ]
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
   @Input() value: string = "";
   @Output() valueChanged = new EventEmitter<string>();
 
@@ -30,7 +30,5 @@ export class InputComponent implements OnInit {
   }
 
   constructor() { }
-
-  ngOnInit() {}
 
 }
