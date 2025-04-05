@@ -1,6 +1,6 @@
 <ion-input
   [value]="value"
-  (ionInput)="onInputChange($event)"
+  [label]="label + ':'"
   [placeholder]="placeholder"
-  [label]="label">
+  (ionInput)="onInputChange($event)">
 </ion-input>

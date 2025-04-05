@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonInput
@@ -16,18 +16,22 @@ import {
     IonInput
   ]
 })
-export class InputComponent {
+export class InputComponent implements OnInit{
   @Input() value: string = "";
-  @Input() label: string = "Text";
-  placeholder: string = `Enter ${this.label}`;
+  @Input() label: string = "text";
+  placeholder: string = "";
 
   @Output() valueChanged = new EventEmitter<string>();
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.placeholder = `Enter ${this.label} here`;
+  }
 
   onInputChange(event: any) {
     this.value = event.target.value;
     this.valueChanged.emit(this.value);
   }
-
-  constructor() { }
 
 }
