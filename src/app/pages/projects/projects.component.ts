@@ -50,7 +50,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   /** open Project Create Modal */
-  async openProjectTaskCreateModal() {
+  async openProjectCreateModal() {
     const modal = await this.modalCtrl.create({
       component: ProjectCreateModalComponent,
       componentProps: {}
