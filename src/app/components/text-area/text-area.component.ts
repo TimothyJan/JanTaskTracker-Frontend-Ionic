@@ -16,10 +16,11 @@ import {
     IonTextarea
   ]
 })
+
 export class TextAreaComponent implements OnInit{
   @Input() text: string = "";
-  @Input() label: string = "Description";
-  placeholder: string = `Enter ${this.label} here`;
+  @Input() label: string = "";
+  placeholder: string = "";
 
   // Optional configuration
   @Input() rows: number = 3;
@@ -27,7 +28,7 @@ export class TextAreaComponent implements OnInit{
   @Output() textChanged = new EventEmitter<string>();
 
   ngOnInit(): void {
-      this.label = this.label + ": ";
+    this.placeholder = `Enter ${this.label} here`;
   }
 
   onTextChange(event: any) {
