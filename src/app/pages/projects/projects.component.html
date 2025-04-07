@@ -6,10 +6,15 @@
     <ion-button (click)="openProjectCreateModal()">Create New Project</ion-button>
   </div>
 
-  <ion-list>
-    <ion-item *ngFor="let projectID of listOfProjectIDs">
-      <app-project [projectID]="projectID"></app-project>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="listOfProjectIDs.length>0; else noProjectBlock">
+    <ion-list *ngFor="let projectID of listOfProjectIDs">
+      <ion-item>
+        <app-project [projectID]="projectID"></app-project>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ng-template #noProjectBlock>
+    No Projects
+  </ng-template>
 
 </ion-content>
