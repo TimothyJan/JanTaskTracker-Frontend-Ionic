@@ -7,8 +7,10 @@ import { Project } from '../models/project.model';
 })
 export class ProjectService {
 
-  private projectsChangedSource = new Subject<void>();  // Emit events when department is added
+  private projectsChangedSource = new Subject<void>();  // Emit events when department is added/changed
   projectsChanged$ = this.projectsChangedSource.asObservable();
+
+  projectID: number = 2;
 
   private projects: Project[] = [
     new Project(1, 'Project Alpha', 'First project', 'Active', new Date('2024-11-13'), new Date('2025-11-13')),
@@ -37,9 +39,10 @@ export class ProjectService {
   }
 
   // Add a new project
-  addProject(newProject: Project): void {
-    newProject.projectID = this.projects.length+1;
+  createProject(newProject: Project): void {
+    newProject.projectID = this.projectID++;
     this.projects.push(newProject);
+    this.projectsChangedSource.next();
   }
 
   // Update an existing project
@@ -47,6 +50,7 @@ export class ProjectService {
     const index = this.projects.findIndex((project) => project.projectID === updatedProject.projectID);
     if (index !== -1) {
       this.projects[index] = updatedProject;
+      this.projectsChangedSource.next();
     }
   }
 
