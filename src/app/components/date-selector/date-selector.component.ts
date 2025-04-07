@@ -37,6 +37,9 @@ export class DateSelectorComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.date) {
+      this.selectedDate = this.date.toISOString();
+    }
     this.dateSelected.emit(this.selectedDate);
   }
 
