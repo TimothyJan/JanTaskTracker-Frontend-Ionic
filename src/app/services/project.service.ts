@@ -10,7 +10,7 @@ export class ProjectService {
   private projectsChangedSource = new Subject<void>();  // Emit events when department is added/changed
   projectsChanged$ = this.projectsChangedSource.asObservable();
 
-  projectID: number = 2;
+  projectID: number = 3;
 
   private projects: Project[] = [
     new Project(1, 'Project Alpha', 'First project', 'Active', new Date('2024-11-13'), new Date('2025-11-13')),

@@ -107,7 +107,7 @@ export class ProjectComponent implements OnInit {
           handler: () => this.openProjectTaskCreateModal(),
         },
         {
-          text: 'Delete',
+          text: 'Delete Project',
           role: 'destructive',
           handler: () => this.onDelete(this.project.projectID),
         },
