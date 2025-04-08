@@ -93,7 +93,6 @@ export class ProjectCreateModalComponent {
   handleStartDateSelection(selectedDate: string) {
     // Convert to Date object if needed
     const dateObj = new Date(selectedDate);
-    // Update your form/model
     this.projectForm.controls['startDate'].setValue(dateObj);
   }
 
@@ -101,7 +100,6 @@ export class ProjectCreateModalComponent {
   handleDueDateSelection(selectedDate: string) {
     // Convert to Date object if needed
     const dateObj = new Date(selectedDate);
-    // Update your form/model
     this.projectForm.controls['dueDate'].setValue(dateObj);
   }
 
