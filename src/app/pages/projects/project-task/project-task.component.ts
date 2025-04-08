@@ -47,7 +47,7 @@ import { ProjectTaskEditModalComponent } from '../../../components/modals/projec
 })
 export class ProjectTaskComponent implements OnInit {
   @Input() projectTaskID: number = 0;
-  projectTask: ProjectTask = new ProjectTask(0, 0, "", "", "Not Started", [0]);
+  projectTask: ProjectTask = new ProjectTask(0, 0, "", "", "Not Started");
 
   titleInvalid: boolean = false;
   descriptionInvalid: boolean = false;

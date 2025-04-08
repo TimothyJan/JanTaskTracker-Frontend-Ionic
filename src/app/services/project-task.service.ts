@@ -13,10 +13,10 @@ export class ProjectTaskService {
   projectTaskID: number = 5;
 
   private projectTasks: ProjectTask[] = [
-    new ProjectTask(1, 1, 'Task 1', 'Task for Project Alpha', 'Completed', [0,1], new Date('2024-11-13'), new Date('2024-12-13')),
-    new ProjectTask(2, 1, 'Task 2', 'Another Task for Project Alpha', 'Active', [3], new Date('2024-12-13'), new Date('2025-1-13')),
-    new ProjectTask(3, 2, 'Task 3', 'Task for Project Beta', 'Completed', [1], new Date('2025-1-13'), new Date('2025-2-13')),
-    new ProjectTask(4, 2, 'Task 4', 'Another Task for Project Beta', 'Active', [1], new Date('2024-11-13'), new Date('2025-2-13'))
+    new ProjectTask(1, 1, 'Task 1', 'Task for Project Alpha', 'Completed', new Date('2024-11-13'), new Date('2024-12-13'), [0,1]),
+    new ProjectTask(2, 1, 'Task 2', 'Another Task for Project Alpha', 'Active', new Date('2024-12-13'), new Date('2025-1-13'), [3]),
+    new ProjectTask(3, 2, 'Task 3', 'Task for Project Beta', 'Completed', new Date('2025-1-13'), new Date('2025-2-13'), [1]),
+    new ProjectTask(4, 2, 'Task 4', 'Another Task for Project Beta', 'Active', new Date('2024-11-13'), new Date('2025-2-13'), [1])
   ];
 
   constructor() {}
@@ -47,7 +47,7 @@ export class ProjectTaskService {
   }
 
   // Add a new project task
-  addProjectTask(newProjectTask: ProjectTask): void {
+  createProjectTask(newProjectTask: ProjectTask): void {
     newProjectTask.projectTaskID = this.projectTaskID++;
     this.projectTasks.push(newProjectTask);
     this.projectTasksChangedSource.next();
