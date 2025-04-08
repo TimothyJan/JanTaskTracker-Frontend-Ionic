@@ -48,7 +48,6 @@ export class ProjectsComponent implements OnInit {
   /** Get list of ProjectIDs */
   getListOfProjectIDs(): void {
     this.listOfProjectIDs = this._projectService.getListOfProjectIDs();
-    console.log(this.listOfProjectIDs);
   }
 
   /** open Project Create Modal */
