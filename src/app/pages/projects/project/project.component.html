@@ -26,6 +26,7 @@
 
       <ion-row *ngIf="project.startDate && project.dueDate" class="date">
         {{ project.startDate | date: 'shortDate':'UTC' }} - {{ project.dueDate  | date: 'shortDate':'UTC' }}
+        <!-- {{ project.startDate | date: 'shortDate':'PDT' }} - {{ project.dueDate  | date: 'shortDate':'PDT' }} -->
       </ion-row>
 
       <ion-row>
