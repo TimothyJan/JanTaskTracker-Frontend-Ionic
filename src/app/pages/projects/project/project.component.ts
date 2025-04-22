@@ -86,7 +86,6 @@ export class ProjectComponent implements OnInit {
   /** Get Project by ID */
   getProjectByID(): void {
     this.project = this._projectService.getProjectByID(this.projectID);
-    console.log(this.project);
   }
 
   /** Get list of ProjectTaskIDs by ProjectID */
