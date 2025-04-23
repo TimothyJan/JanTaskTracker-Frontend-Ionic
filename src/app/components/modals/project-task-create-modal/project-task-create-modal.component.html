@@ -33,5 +33,13 @@
       <app-date-selector [label]="'Due Date'" (dateSelected)="handleDueDateSelection($event)"></app-date-selector>
     </ion-item>
 
+    <ion-item>
+     <!-- In parent template -->
+      <app-assign-employees
+      [assignedEmployeeIDs]="projectTaskForm.value.assignedEmployeeIDs"
+      (employeesSelectedEvent)="handleEmployeeSelection($event)">
+      </app-assign-employees>
+    </ion-item>
+
   </ion-list>
 </ion-content>

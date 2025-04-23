@@ -19,6 +19,7 @@ import { DateSelectorComponent } from "../../date-selector/date-selector.compone
 import { ProjectTaskService } from 'src/app/services/project-task.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ProjectTask } from 'src/app/models/project-task.model';
+import { AssignEmployeesComponent } from "../../assign-employees/assign-employees.component";
 
 @Component({
   selector: 'app-project-task-create-modal',
@@ -39,7 +40,8 @@ import { ProjectTask } from 'src/app/models/project-task.model';
     InputComponent,
     TextAreaComponent,
     StatusSelectorComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    AssignEmployeesComponent
 ]
 })
 export class ProjectTaskCreateModalComponent  implements OnInit {
@@ -103,16 +105,19 @@ export class ProjectTaskCreateModalComponent  implements OnInit {
   handleStartDateSelection(selectedDate: string) {
     // Convert to Date object if needed
     const dateObj = new Date(selectedDate);
-    // Update your form/model
     this.projectTaskForm.controls['startDate'].setValue(dateObj);
   }
 
-  /** Handles dateDate change from date-selector component and assigns date value to projectTaskForm */
+  /** Handles dueDate change from date-selector component and assigns date value to projectTaskForm */
   handleDueDateSelection(selectedDate: string) {
     // Convert to Date object if needed
     const dateObj = new Date(selectedDate);
-    // Update your form/model
     this.projectTaskForm.controls['dueDate'].setValue(dateObj);
+  }
+
+  /** Handles assign employees change from assign-employees component and assigns list of employeeIDs to projectTaskForm */
+  handleEmployeeSelection(selectedEmployeeIDs: any) {
+    this.projectTaskForm.controls['assignedEmployeeIDs'].setValue(selectedEmployeeIDs);
   }
 
   /** Create Project Task */
@@ -125,6 +130,7 @@ export class ProjectTaskCreateModalComponent  implements OnInit {
       this.projectTaskForm.controls["status"].value,
       this.projectTaskForm.controls["startDate"].value,
       this.projectTaskForm.controls["dueDate"].value,
+      this.projectTaskForm.controls["assignedEmployeeIDs"].value
     );
     this._projectTaskService.createProjectTask(newProjectTask);
     this._projectTaskService.notifyProjectTasksChanged();
