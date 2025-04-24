@@ -75,8 +75,6 @@ export class ProjectTaskComponent implements OnInit {
 
     // Sync date strings
     this.syncDateStrings();
-
-    console.log(this.projectTask);
   }
 
   /** Convert Date objects to yyyy-MM-dd strings for binding */
@@ -135,7 +133,7 @@ export class ProjectTaskComponent implements OnInit {
 
     if (role === 'confirm') {
       this.getProjectTaskByID();
-      console.log(data, role);
+      // console.log(data, role);
     }
   }
 

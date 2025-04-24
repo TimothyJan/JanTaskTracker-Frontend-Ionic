@@ -6,6 +6,7 @@ import {
   IonItem,
   IonText,
 } from '@ionic/angular/standalone';
+import { Subject, takeUntil } from 'rxjs';
 import { ProjectTask } from 'src/app/models/project-task.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ProjectTaskService } from 'src/app/services/project-task.service';
@@ -27,6 +28,7 @@ import { RoleService } from 'src/app/services/role.service';
 export class AssignedEmployeeListComponent  implements OnInit {
   @Input() projectTaskID: number = 0;
   projectTask: ProjectTask = new ProjectTask(0, 0, "", "", "Not Started");
+  private destroy$ = new Subject<void>();
 
   constructor(
     private _projectTaskService: ProjectTaskService,
@@ -36,6 +38,13 @@ export class AssignedEmployeeListComponent  implements OnInit {
 
   ngOnInit() {
     this.getProjectTaskByID();
+
+    // Subscribe to project task changes
+    this._projectTaskService.projectTasksChanged$
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(() => {
+      this.getProjectTaskByID();
+    });
   }
 
   /** Get ProjectTask by ID */
@@ -65,6 +74,11 @@ export class AssignedEmployeeListComponent  implements OnInit {
       }
     }
     return "Unable to get employee";
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
