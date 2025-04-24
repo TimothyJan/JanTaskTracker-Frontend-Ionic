@@ -2,6 +2,7 @@
   aria-label="Employees"
   placeholder="Select Employees"
   [multiple]="true"
+  [(ngModel)]="selectedEmployees"
   (ionChange)="onEmployeeChange($event)"
   [compareWith]="compareEmployees">
 
