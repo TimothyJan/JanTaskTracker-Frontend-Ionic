@@ -19,7 +19,7 @@
           @for (p of appPages; track p; let i = $index) {
             <ion-menu-toggle auto-hide="false">
               <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon"></ion-icon>
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
@@ -31,7 +31,7 @@
           <div class="flex-item">
             <ion-note>
               Created by Timothy Jan
-              <a href="https://github.com/TimothyJan/JanTaskTracker-Frontend-Ionic" aria-label="Github" class="social-icon">
+              <a href="https://github.com/TimothyJan/JanTaskTracker-Frontend-Ionic" class="social-icon">
                 <i class="fab fa-github"></i>
               </a>
             </ion-note>
