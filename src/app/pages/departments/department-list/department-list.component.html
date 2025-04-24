@@ -7,7 +7,7 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-list>
+    <ion-list *ngIf="departments.length>0; else noDepartmentsBlock">
 
       <ion-item>
         <ion-grid>
@@ -42,6 +42,10 @@
       </ion-item>
 
     </ion-list>
+
+    <ng-template #noDepartmentsBlock>
+      No Departments
+    </ng-template>
   </ion-card-content>
 
 </ion-card>

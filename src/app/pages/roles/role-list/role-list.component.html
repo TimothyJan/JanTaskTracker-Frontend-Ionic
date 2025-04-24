@@ -7,7 +7,7 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-list>
+    <ion-list *ngIf="roles.length>0; else noRolesBlock">
 
       <ion-item>
         <ion-grid>
@@ -46,6 +46,10 @@
         </ion-grid>
       </ion-item>
     </ion-list>
+
+    <ng-template #noRolesBlock>
+      No Roles
+    </ng-template>
   </ion-card-content>
 
 </ion-card>

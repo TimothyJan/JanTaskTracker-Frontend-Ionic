@@ -7,7 +7,7 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-list>
+    <ion-list *ngIf="employees.length>0; else noEmployeesBlock">
 
       <ion-item>
         <ion-grid>
@@ -56,6 +56,10 @@
       </ion-item>
 
     </ion-list>
+
+    <ng-template #noEmployeesBlock>
+      No Employees
+    </ng-template>
   </ion-card-content>
 
 </ion-card>
