@@ -2,17 +2,14 @@
   "name": "JanTaskTracker",
   "version": "0.0.1",
   "author": "Ionic Framework",
-  "homepage": "https://timothyjan.github.io/JanTaskTracker",
+  "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "deploy": "gh-pages -d www",
-    "build-and-deploy": "npm run build && npm run deploy",
-    "predeploy": "npm run build"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {

@@ -37,9 +37,7 @@
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": [],
-            "browser": "src/main.ts",
-            "baseHref": "/JanTaskTracker/",
-            "deployUrl": "/JanTaskTracker/"
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -79,8 +77,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "app:build:production",
-              "baseHref": "/"
+              "buildTarget": "app:build:production"
             },
             "development": {
               "buildTarget": "app:build:development"
