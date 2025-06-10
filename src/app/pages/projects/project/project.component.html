@@ -5,7 +5,9 @@
         <ion-grid class="ion-no-padding">
           <ion-row class="ion-justify-content">
             <ion-col size="6" class="ion-align-self-center status">
-              {{ project.startDate | date: 'shortDate':'UTC' }} - {{ project.dueDate  | date: 'shortDate':'UTC' }}
+              <div *ngIf="project.startDate">
+                {{ project.startDate | date: 'shortDate':'UTC' }} - {{ project.dueDate  | date: 'shortDate':'UTC' }}
+              </div>
             </ion-col>
             <ion-col size="4" class="ion-align-self-center ion-text-end status">
               {{ project.status }}
