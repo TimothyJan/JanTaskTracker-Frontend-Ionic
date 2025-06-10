@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import {
   IonCard,
   IonCardHeader,
-  IonCardTitle,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonCardContent,
+  IonCardTitle,
   IonList,
   IonItem,
   IonButton,
   IonIcon,
-  IonGrid,
-  IonRow,
-  IonCol,
   ActionSheetController,
   ModalController
 } from '@ionic/angular/standalone';
@@ -34,15 +34,15 @@ import { ProjectTaskCreateModalComponent } from 'src/app/components/modals/proje
     CommonModule,
     IonCard,
     IonCardHeader,
-    IonCardTitle,
+    IonGrid,
+    IonRow,
+    IonCol,
     IonCardContent,
+    IonCardTitle,
     IonList,
     IonItem,
     IonButton,
     IonIcon,
-    IonGrid,
-    IonRow,
-    IonCol,
     ProjectTaskComponent
 ]
 })

@@ -1,15 +1,18 @@
-<ion-card class="ion-card" color="light">
+<ion-card class="project-task-card">
 
   <ion-card-header>
     <ion-grid>
 
       <ion-row>
         <ion-grid class="ion-no-padding">
-          <ion-row class="ion-justify-content-end">
-            <ion-col size="5" class="ion-align-self-center ion-text-end status">
+          <ion-row class="ion-justify-content">
+            <ion-col size="6" class="ion-align-self-center status">
+              {{ projectTask.startDate | date: 'shortDate':'UTC' }} - {{ projectTask.dueDate  | date: 'shortDate':'UTC' }}
+            </ion-col>
+            <ion-col size="4" class="ion-align-self-center ion-text-end status">
               {{ projectTask.status }}
             </ion-col>
-            <ion-col size="1" class="ion-text-end">
+            <ion-col size="2" class="ion-text-end">
               <ion-button fill="clear" size="small" (click)="presentProjectTaskActionSheet()">
                 <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
               </ion-button>
@@ -18,27 +21,15 @@
         </ion-grid>
       </ion-row>
 
-      <ion-row>
-        <ion-col class="ion-align-self-center ion-text-nowrap" size="6">
-          <ion-card-title>
-            {{ projectTask.title }}
-          </ion-card-title>
-        </ion-col>
-      </ion-row>
-
     </ion-grid>
   </ion-card-header>
 
   <ion-card-content>
     <ion-list>
 
-      <ion-item>
-        <ion-grid>
-          <ion-row class="date">
-            {{ projectTask.startDate | date: 'shortDate':'UTC' }} - {{ projectTask.dueDate  | date: 'shortDate':'UTC' }}
-          </ion-row>
-        </ion-grid>
-      </ion-item>
+      <ion-card-title>
+        {{ projectTask.title }}
+      </ion-card-title>
 
       <ion-item>
         <ion-text>
