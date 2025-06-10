@@ -46,7 +46,7 @@ import { ProjectTaskEditModalComponent } from '../../../components/modals/projec
 ]
 })
 export class ProjectTaskComponent implements OnInit {
-  @Input() projectTaskID: number = 0;
+  @Input() projectTaskId: number = 0;
   projectTask: ProjectTask = new ProjectTask(0, 0, "", "", "Not Started");
 
   titleInvalid: boolean = false;
@@ -65,13 +65,13 @@ export class ProjectTaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProjectTaskByID();
+    this.getProjectTaskById();
     this.syncDateStrings();
   }
 
-  /** Get ProjectTask by ID */
-  getProjectTaskByID(): void {
-    this.projectTask = this._projectTaskService.getProjectTaskByID(this.projectTaskID);
+  /** Get ProjectTask by Id */
+  getProjectTaskById(): void {
+    this.projectTask = this._projectTaskService.getProjectTaskById(this.projectTaskId);
 
     // Sync date strings
     this.syncDateStrings();
@@ -124,7 +124,7 @@ export class ProjectTaskComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ProjectTaskEditModalComponent,
       componentProps: {
-        projectTaskID: this.projectTaskID
+        projectTaskId: this.projectTaskId
       }
     });
     modal.present();
@@ -132,7 +132,7 @@ export class ProjectTaskComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirm') {
-      this.getProjectTaskByID();
+      this.getProjectTaskById();
       // console.log(data, role);
     }
   }
@@ -141,7 +141,7 @@ export class ProjectTaskComponent implements OnInit {
   onDelete(): void {
     const confirmDelete = confirm('Are you sure you want to delete this projectTask?');
     if (confirmDelete) {
-      this._projectTaskService.deleteProjectTask(this.projectTaskID);
+      this._projectTaskService.deleteProjectTask(this.projectTaskId);
     }
   }
 }

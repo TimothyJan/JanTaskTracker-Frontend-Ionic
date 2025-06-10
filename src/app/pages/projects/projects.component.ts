@@ -29,7 +29,7 @@ import { ProjectCreateModalComponent } from 'src/app/components/modals/project-c
 })
 
 export class ProjectsComponent implements OnInit {
-  listOfProjectIDs: number[] = [];
+  listOfProjectIds: number[] = [];
 
   constructor(
     private _projectService: ProjectService,
@@ -37,17 +37,17 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getListOfProjectIDs();
+    this.getListOfProjectIds();
 
     // Subscribe to changes in projects, specifically for deletion
     this._projectService.projectsChanged$.subscribe(() => {
-      this.getListOfProjectIDs();
+      this.getListOfProjectIds();
     });
   }
 
-  /** Get list of ProjectIDs */
-  getListOfProjectIDs(): void {
-    this.listOfProjectIDs = this._projectService.getListOfProjectIDs();
+  /** Get list of ProjectIds */
+  getListOfProjectIds(): void {
+    this.listOfProjectIds = this._projectService.getListOfProjectIds();
   }
 
   /** open Project Create Modal */

@@ -40,7 +40,7 @@ export class RoleCreateComponent implements OnInit {
 
   roleForm: FormGroup = new FormGroup({
     roleName: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
-    departmentID: new FormControl(null, Validators.required)
+    departmentId: new FormControl(null, Validators.required)
   });
 
   constructor(
@@ -63,7 +63,7 @@ export class RoleCreateComponent implements OnInit {
     if (this.roleForm.valid) {
       const formValue = {
         ...this.roleForm.value,
-        departmentID: Number(this.roleForm.value.departmentID)
+        departmentId: Number(this.roleForm.value.departmentId)
       };
       if(!this._roleService.checkDuplicates(formValue)) {
         this._roleService.addRole(formValue);

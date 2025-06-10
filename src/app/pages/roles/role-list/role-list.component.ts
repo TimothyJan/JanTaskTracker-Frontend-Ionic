@@ -75,9 +75,9 @@ export class RoleListComponent implements OnInit {
     this.roles = this._roleService.getRoles();
   }
 
-  /** Get Department name from DepartmentID */
-  getDepartmentName(departmentID: number): string | undefined {
-    const department = this.departments.find(dep => dep.departmentID == departmentID);
+  /** Get Department name from DepartmentId */
+  getDepartmentName(departmentId: number): string | undefined {
+    const department = this.departments.find(dep => dep.departmentId == departmentId);
     return department ? department.departmentName : undefined;
   }
 
@@ -88,12 +88,12 @@ export class RoleListComponent implements OnInit {
       buttons: [
         {
           text: 'Edit',
-          handler: () => this.openEmployeeEditModal(role.roleID),
+          handler: () => this.openEmployeeEditModal(role.roleId),
         },
         {
           text: 'Delete',
           role: 'destructive',
-          handler: () => this.onDelete(role.roleID),
+          handler: () => this.onDelete(role.roleId),
         },
         {
           text: 'Cancel',
@@ -108,11 +108,11 @@ export class RoleListComponent implements OnInit {
   }
 
   /** Opens Employee Edit Modal */
-  async openEmployeeEditModal(roleID: number) {
+  async openEmployeeEditModal(roleId: number) {
     const modal = await this.modalCtrl.create({
       component: RoleEditModalComponent,
       componentProps: {
-        roleID: roleID
+        roleId: roleId
       }
     });
     modal.present();
@@ -126,10 +126,10 @@ export class RoleListComponent implements OnInit {
   }
 
   /** Delete Role */
-  onDelete(roleID: number): void {
+  onDelete(roleId: number): void {
     const confirmDelete = confirm('Are you sure you want to delete this role?');
     if (confirmDelete) {
-      this._roleService.deleteRole(roleID);
+      this._roleService.deleteRole(roleId);
       this.loadRoles();
       this._toastService.presentSuccessToast("Role deleted.");
     }

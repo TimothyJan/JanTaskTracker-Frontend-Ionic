@@ -69,14 +69,14 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this._employeeService.getEmployees();
   }
 
-  /** Get Department name from DepartmentID */
-  getDepartmentName(departmentID: number): string | undefined {
-    return this._departmentService.getDepartment(departmentID)?.departmentName;
+  /** Get Department name from DepartmentId */
+  getDepartmentName(departmentId: number): string | undefined {
+    return this._departmentService.getDepartment(departmentId)?.departmentName;
   }
 
-  /** Get Role name from RoleID */
-  getRoleName(roleID: number): string | undefined {
-    return this._roleService.getRole(roleID)?.roleName;
+  /** Get Role name from RoleId */
+  getRoleName(roleId: number): string | undefined {
+    return this._roleService.getRole(roleId)?.roleName;
   }
 
   /** Action Sheet Controller */
@@ -86,12 +86,12 @@ export class EmployeeListComponent implements OnInit {
       buttons: [
         {
           text: 'Edit',
-          handler: () => this.openEmployeeEditModal(employee.employeeID),
+          handler: () => this.openEmployeeEditModal(employee.employeeId),
         },
         {
           text: 'Delete',
           role: 'destructive',
-          handler: () => this.onDelete(employee.employeeID),
+          handler: () => this.onDelete(employee.employeeId),
         },
         {
           text: 'Cancel',
@@ -106,11 +106,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   /** Opens Employee Edit Modal */
-  async openEmployeeEditModal(employeeID: number) {
+  async openEmployeeEditModal(employeeId: number) {
     const modal = await this.modalCtrl.create({
       component: EmployeeEditModalComponent,
       componentProps: {
-        employeeID: employeeID
+        employeeId: employeeId
       }
     });
     modal.present();
@@ -124,10 +124,10 @@ export class EmployeeListComponent implements OnInit {
   }
 
   /** Deletes Employee */
-  onDelete(employeeID: number): void {
+  onDelete(employeeId: number): void {
     const confirmDelete = confirm('Are you sure you want to delete this employee?');
     if (confirmDelete) {
-      this._employeeService.deleteEmployee(employeeID);
+      this._employeeService.deleteEmployee(employeeId);
       this.loadEmployees();
       this._toastService.presentSuccessToast("Employee deleted.");
     }

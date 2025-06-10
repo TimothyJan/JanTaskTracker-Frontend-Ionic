@@ -10,7 +10,7 @@ export class DepartmentService {
   private departmentsChangedSource = new Subject<void>();  // Emit events when department is added
   departmentsChanged$ = this.departmentsChangedSource.asObservable();
 
-  departmentID: number = 3;
+  departmentId: number = 3;
 
   departments: Department[] = [
     new Department(0, "FINANCE"),
@@ -28,7 +28,7 @@ export class DepartmentService {
   /** Get Departments based on id */
   getDepartment(id: number): Department | undefined {
     for(let i=0; i<this.departments.length; i++) {
-      if(this.departments[i].departmentID == id) {
+      if(this.departments[i].departmentId == id) {
         return this.departments[i];
       }
     }
@@ -37,7 +37,7 @@ export class DepartmentService {
 
   /** Post new Department */
   createDepartment(department: Department): void {
-    let newDepartment = new Department(this.departmentID++, department.departmentName);
+    let newDepartment = new Department(this.departmentId++, department.departmentName);
     this.departments.push(newDepartment);
     // console.log(this.departments);
   }
@@ -45,7 +45,7 @@ export class DepartmentService {
   /** Update existing Department based on id */
   updateDepartment(department: Department): void {
     for(let i=0; i<this.departments.length; i++) {
-      if(this.departments[i].departmentID == department.departmentID) {
+      if(this.departments[i].departmentId == department.departmentId) {
         this.departments[i] = department;
       }
     }
@@ -54,7 +54,7 @@ export class DepartmentService {
   /** Delete Department based on id */
   deleteDepartment(id: number): void {
     for(let i=0; i<this.departments.length; i++) {
-      if(this.departments[i].departmentID == id) {
+      if(this.departments[i].departmentId == id) {
         this.departments.splice(i, 1);
       }
     }

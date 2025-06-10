@@ -9,7 +9,7 @@ export class EmployeeService {
   private employeesChangedSource = new Subject<void>(); //Emit events when employee is added
   employeesChanged$ = this.employeesChangedSource.asObservable();
 
-  employeeID:number = 4;
+  employeeId:number = 4;
 
   employees: Employee[] = [
     new Employee(0, "ALICE JOHNSON", 60000, 0, 0),
@@ -28,7 +28,7 @@ export class EmployeeService {
   /** Get Employee based on id */
   getEmployee(id: number): Employee | undefined {
     for(let i=0; i<this.employees.length; i++) {
-      if(this.employees[i].employeeID == id) {
+      if(this.employees[i].employeeId == id) {
         return this.employees[i];
       }
     }
@@ -37,7 +37,7 @@ export class EmployeeService {
 
   /** Post new Employee */
   addEmployee(employee: Employee): void {
-    let newEmployee = new Employee(this.employeeID++, employee.name, employee.salary, employee.departmentID, employee.roleID);
+    let newEmployee = new Employee(this.employeeId++, employee.name, employee.salary, employee.departmentId, employee.roleId);
     this.employees.push(newEmployee);
     // console.log(this.employees);
   }
@@ -45,7 +45,7 @@ export class EmployeeService {
   /** Update existing Employee based on id */
   updateEmployee(employee: Employee): void {
     for(let i=0; i<this.employees.length; i++) {
-      if(this.employees[i].employeeID == employee.employeeID) {
+      if(this.employees[i].employeeId == employee.employeeId) {
         this.employees[i] = employee;
       }
     }
@@ -54,7 +54,7 @@ export class EmployeeService {
   /** Delete Employee based on id */
   deleteEmployee(id: number): void {
     for(let i=0; i<this.employees.length; i++) {
-      if(this.employees[i].employeeID == id) {
+      if(this.employees[i].employeeId == id) {
         this.employees.splice(i, 1);
       }
     }

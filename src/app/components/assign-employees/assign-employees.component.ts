@@ -23,7 +23,7 @@ import { RoleService } from 'src/app/services/role.service';
 })
 export class AssignEmployeesComponent  implements OnInit, OnChanges {
   employees: Employee[] = [];
-  @Input() assignedEmployeeIDs: number[] = [];
+  @Input() assignedEmployeeIds: number[] = [];
   @Output() employeesSelectedEvent = new EventEmitter<number[]>();
   selectedEmployees: Employee[] = [];
 
@@ -34,16 +34,16 @@ export class AssignEmployeesComponent  implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getEmployees();
-    // Initialize selected employees based on input IDs
+    // Initialize selected employees based on input Ids
     this.selectedEmployees = this.employees.filter(emp =>
-      this.assignedEmployeeIDs.includes(emp.employeeID)
+      this.assignedEmployeeIds.includes(emp.employeeId)
     );
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['assignedEmployeeIDs'] && this.employees.length) {
+    if (changes['assignedEmployeeIds'] && this.employees.length) {
       this.selectedEmployees = this.employees.filter(emp =>
-        this.assignedEmployeeIDs.includes(emp.employeeID)
+        this.assignedEmployeeIds.includes(emp.employeeId)
       );
     }
   }
@@ -64,12 +64,12 @@ export class AssignEmployeesComponent  implements OnInit, OnChanges {
 
   onEmployeeChange(event: any) {
     this.selectedEmployees = event.detail.value;
-    const selectedIDs = this.selectedEmployees.map(emp => emp.employeeID);
-    this.employeesSelectedEvent.emit(selectedIDs);
+    const selectedIds = this.selectedEmployees.map(emp => emp.employeeId);
+    this.employeesSelectedEvent.emit(selectedIds);
   }
 
   compareEmployees(e1: Employee, e2: Employee): boolean {
-    return e1 && e2 ? e1.employeeID === e2.employeeID : e1 === e2;
+    return e1 && e2 ? e1.employeeId === e2.employeeId : e1 === e2;
   }
 
 }

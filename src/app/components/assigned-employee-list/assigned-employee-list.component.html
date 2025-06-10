@@ -1,11 +1,11 @@
-<div *ngIf="projectTask.assignedEmployeeIDs; else noAssignedEmployees">
+<div *ngIf="projectTask.assignedEmployeeIds; else noAssignedEmployees">
   <ion-list>
     <ion-list-header>
       Assigned Employees:
     </ion-list-header>
-    <ion-item *ngFor="let employeeID of projectTask.assignedEmployeeIDs">
+    <ion-item *ngFor="let employeeId of projectTask.assignedEmployeeIds">
       <ion-text>
-        {{ getEmployeeNameByEmployeeID(employeeID) }} - {{ getRoleNameByEmployeeID(employeeID) }}
+        {{ getEmployeeNameByEmployeeId(employeeId) }} - {{ getRoleNameByEmployeeId(employeeId) }}
       </ion-text>
     </ion-item>
   </ion-list>

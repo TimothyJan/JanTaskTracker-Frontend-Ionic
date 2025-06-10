@@ -45,8 +45,8 @@ export class EmployeeCreateComponent implements OnInit {
   employeeForm: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
     salary: new FormControl(0, [Validators.min(0), Validators.required]),
-    departmentID: new FormControl(-1, Validators.required),
-    roleID: new FormControl(null, Validators.required)
+    departmentId: new FormControl(-1, Validators.required),
+    roleId: new FormControl(null, Validators.required)
   });
 
   constructor(
@@ -63,20 +63,20 @@ export class EmployeeCreateComponent implements OnInit {
 
   /** Department change updates the roles array to the selected Department Roles  */
   departmentSelectionChange(event: CustomEvent): void {
-    this.getRolesFromDepartmentID(event.detail.value);
+    this.getRolesFromDepartmentId(event.detail.value);
   }
 
-  /** Roles array is updated to selected departmentID Department roles */
-  getRolesFromDepartmentID(departmentID: number): void {
-    this.roles = this._roleService.getRolesFromDepartmentID(departmentID);
+  /** Roles array is updated to selected departmentId Department roles */
+  getRolesFromDepartmentId(departmentId: number): void {
+    this.roles = this._roleService.getRolesFromDepartmentId(departmentId);
   }
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
       const formValue = {
         ...this.employeeForm.value,
-        departmentID: Number(this.employeeForm.value.departmentID),
-        roleID: Number(this.employeeForm.value.roleID),
+        departmentId: Number(this.employeeForm.value.departmentId),
+        roleId: Number(this.employeeForm.value.roleId),
       }
       // console.log('Form Submitted:', formValue);
       this._employeeService.addEmployee(formValue);

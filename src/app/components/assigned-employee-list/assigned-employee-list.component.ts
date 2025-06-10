@@ -26,7 +26,7 @@ import { RoleService } from 'src/app/services/role.service';
   ]
 })
 export class AssignedEmployeeListComponent  implements OnInit {
-  @Input() projectTaskID: number = 0;
+  @Input() projectTaskId: number = 0;
   projectTask: ProjectTask = new ProjectTask(0, 0, "", "", "Not Started");
   private destroy$ = new Subject<void>();
 
@@ -37,37 +37,37 @@ export class AssignedEmployeeListComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getProjectTaskByID();
+    this.getProjectTaskById();
 
     // Subscribe to project task changes
     this._projectTaskService.projectTasksChanged$
     .pipe(takeUntil(this.destroy$))
     .subscribe(() => {
-      this.getProjectTaskByID();
+      this.getProjectTaskById();
     });
   }
 
-  /** Get ProjectTask by ID */
-  getProjectTaskByID(): void {
-    this.projectTask = this._projectTaskService.getProjectTaskByID(this.projectTaskID);
+  /** Get ProjectTask by Id */
+  getProjectTaskById(): void {
+    this.projectTask = this._projectTaskService.getProjectTaskById(this.projectTaskId);
   }
 
-  /** Get User by employeeID */
-  getEmployeeNameByEmployeeID(employeeID: number): string {
-    let assignedEmployee = this._employeeService.getEmployee(employeeID);
+  /** Get User by employeeId */
+  getEmployeeNameByEmployeeId(employeeId: number): string {
+    let assignedEmployee = this._employeeService.getEmployee(employeeId);
     if (assignedEmployee) {
        return assignedEmployee.name;
     }
     return "Unassigned";
   }
 
-  /** Get roleName with roleID */
-  getRoleNameByEmployeeID(employeeID: number): string {
-    let assignedEmployee = this._employeeService.getEmployee(employeeID);
+  /** Get roleName with roleId */
+  getRoleNameByEmployeeId(employeeId: number): string {
+    let assignedEmployee = this._employeeService.getEmployee(employeeId);
     if (assignedEmployee) {
-      let roleID = assignedEmployee.roleID;
-      if (roleID != -1) {
-        return this._roleService.getRole(roleID)!.roleName
+      let roleId = assignedEmployee.roleId;
+      if (roleId != -1) {
+        return this._roleService.getRole(roleId)!.roleName
       }
       else {
         return "Unable to get role";

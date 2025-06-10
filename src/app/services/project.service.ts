@@ -10,7 +10,7 @@ export class ProjectService {
   private projectsChangedSource = new Subject<void>();  // Emit events when department is added/changed
   projectsChanged$ = this.projectsChangedSource.asObservable();
 
-  projectID: number = 3;
+  projectId: number = 3;
 
   private projects: Project[] = [
     new Project(1, 'Project Alpha', 'First project', 'Active', new Date('2024-11-13'), new Date('2025-11-13')),
@@ -24,30 +24,30 @@ export class ProjectService {
     return this.projects;
   }
 
-  /** Get list of all projectIDs */
-  getListOfProjectIDs(): number[] {
-    let listOfProjectIDs: number[] = [];
+  /** Get list of all projectIds */
+  getListOfProjectIds(): number[] {
+    let listOfProjectIds: number[] = [];
     this.projects.forEach((project) => {
-      listOfProjectIDs.push(project.projectID);
+      listOfProjectIds.push(project.projectId);
     });
-    return listOfProjectIDs;
+    return listOfProjectIds;
   }
 
-  // Get a project by ID
-  getProjectByID(projectID: number): Project {
-    return this.projects.find((project) => project.projectID === projectID)!;
+  // Get a project by Id
+  getProjectById(projectId: number): Project {
+    return this.projects.find((project) => project.projectId === projectId)!;
   }
 
   // Add a new project
   createProject(newProject: Project): void {
-    newProject.projectID = this.projectID++;
+    newProject.projectId = this.projectId++;
     this.projects.push(newProject);
     this.projectsChangedSource.next();
   }
 
   // Update an existing project
   updateProject(updatedProject: Project): void {
-    const index = this.projects.findIndex((project) => project.projectID === updatedProject.projectID);
+    const index = this.projects.findIndex((project) => project.projectId === updatedProject.projectId);
     if (index !== -1) {
       this.projects[index] = updatedProject;
       this.projectsChangedSource.next();
@@ -55,8 +55,8 @@ export class ProjectService {
   }
 
   // Delete a project
-  deleteProject(projectID: number): void {
-    const index = this.projects.findIndex(project => project.projectID === projectID);
+  deleteProject(projectId: number): void {
+    const index = this.projects.findIndex(project => project.projectId === projectId);
     if (index !== -1) {
       this.projects.splice(index, 1);
       this.projectsChangedSource.next(); // Notify subscribers that the project list has changed

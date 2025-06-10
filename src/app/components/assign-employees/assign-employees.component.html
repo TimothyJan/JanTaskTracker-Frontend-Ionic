@@ -8,6 +8,6 @@
   <div slot="label">Employees: </div>
 
   <ion-select-option *ngFor="let employee of employees" [value]="employee">
-    {{ employee.name }} - {{ getRoleName(employee.roleID) }}
+    {{ employee.name }} - {{ getRoleName(employee.roleId) }}
   </ion-select-option>
 </ion-select>

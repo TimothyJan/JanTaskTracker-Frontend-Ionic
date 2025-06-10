@@ -37,9 +37,9 @@ import { ToastService } from 'src/app/services/toast.service';
   ]
 })
 export class DepartmentEditModalComponent implements OnInit {
-  @Input() departmentID: number = -1;
-  originalDepartment: Department = {departmentID: -1, departmentName: ""};
-  editedDepartment: Department = {departmentID: -1, departmentName: ""}; // Working copy
+  @Input() departmentId: number = -1;
+  originalDepartment: Department = {departmentId: -1, departmentName: ""};
+  editedDepartment: Department = {departmentId: -1, departmentName: ""}; // Working copy
 
   constructor(
     private modalCtrl: ModalController,
@@ -53,7 +53,7 @@ export class DepartmentEditModalComponent implements OnInit {
 
   /** Get Employee */
   getDepartment(): void {
-    const dept = this._departmentService.getDepartment(this.departmentID);
+    const dept = this._departmentService.getDepartment(this.departmentId);
     if (!dept) {
       console.error('Department not found');
       this.modalCtrl.dismiss(null, 'error');
@@ -71,7 +71,7 @@ export class DepartmentEditModalComponent implements OnInit {
   /** Confirm save */
   confirm() {
     this.saveChanges();
-    return this.modalCtrl.dismiss(this.departmentID, 'confirm');
+    return this.modalCtrl.dismiss(this.departmentId, 'confirm');
   }
 
   /** Save Changes */

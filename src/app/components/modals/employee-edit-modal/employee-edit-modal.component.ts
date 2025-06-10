@@ -45,9 +45,9 @@ import { ToastService } from 'src/app/services/toast.service';
   ],
 })
 export class EmployeeEditModalComponent implements OnInit {
-  @Input() employeeID: number = -1;
-  originalEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
-  editedEmployee: Employee = {employeeID:-1, name:"", salary:-1, departmentID:-1, roleID:-1};
+  @Input() employeeId: number = -1;
+  originalEmployee: Employee = {employeeId:-1, name:"", salary:-1, departmentId:-1, roleId:-1};
+  editedEmployee: Employee = {employeeId:-1, name:"", salary:-1, departmentId:-1, roleId:-1};
   departments: Department[] = [];
   filteredRoles: Role[] = [];
 
@@ -62,12 +62,12 @@ export class EmployeeEditModalComponent implements OnInit {
   ngOnInit() {
     this.getEmployee();
     this.departments = this._departmentService.getDepartments();
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.originalEmployee.departmentID);
+    this.filteredRoles= this._roleService.getRolesFromDepartmentId(this.originalEmployee.departmentId);
   }
 
   /** Get Employee */
   getEmployee(): void {
-    const employee = this._employeeService.getEmployee(this.employeeID);
+    const employee = this._employeeService.getEmployee(this.employeeId);
     if (!employee) {
       console.error('Employee not found');
       this.modalCtrl.dismiss(null, 'error');
@@ -79,7 +79,7 @@ export class EmployeeEditModalComponent implements OnInit {
 
   /** When department selection changes update the filteredRoles */
   changeFilteredRoles(event: CustomEvent): void {
-    this.filteredRoles= this._roleService.getRolesFromDepartmentID(this.editedEmployee.departmentID)
+    this.filteredRoles= this._roleService.getRolesFromDepartmentId(this.editedEmployee.departmentId)
   }
 
   /** Camcel and close modal */
@@ -90,7 +90,7 @@ export class EmployeeEditModalComponent implements OnInit {
   /** Confirm save and close modal */
   confirm() {
     this.saveChanges();
-    return this.modalCtrl.dismiss(this.employeeID, 'confirm');
+    return this.modalCtrl.dismiss(this.employeeId, 'confirm');
   }
 
   /** save Changes */

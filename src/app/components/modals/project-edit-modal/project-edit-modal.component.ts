@@ -44,7 +44,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 
 export class ProjectEditModalComponent implements OnInit {
-  @Input() projectID: number = -1;
+  @Input() projectId: number = -1;
 
   originalProject: Project = new Project(-1, "", "", "Not Started", new Date(), new Date());
   editedProject: Project = new Project(-1, "", "", "Not Started", new Date(), new Date());
@@ -59,9 +59,9 @@ export class ProjectEditModalComponent implements OnInit {
     this.getProject();
   }
 
-  /** Get project with projectID */
+  /** Get project with projectId */
   getProject(): void {
-    const project = this._projectService.getProjectByID(this.projectID);
+    const project = this._projectService.getProjectById(this.projectId);
     if(project) {
       this.originalProject = {...project};
       this.editedProject = {...project};
@@ -79,7 +79,7 @@ export class ProjectEditModalComponent implements OnInit {
   /** Confirm save and close modal */
   confirm() {
     this.saveChanges();
-    return this.modalCtrl.dismiss(this.projectID, 'confirm');
+    return this.modalCtrl.dismiss(this.projectId, 'confirm');
   }
 
   /** Handles projectName change from input component and assigns projectName value to projectForm */

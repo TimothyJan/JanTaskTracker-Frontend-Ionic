@@ -1,30 +1,30 @@
 export class ProjectTask {
-  projectTaskID: number;
-  projectID: number;
+  projectTaskId: number;
+  projectId: number;
   title: string;
   description: string;
   status: "Not Started" | "Active" | "Completed";
   startDate?: Date;
   dueDate?: Date;
-  assignedEmployeeIDs?: number[] | null;
+  assignedEmployeeIds?: number[] | null;
 
   constructor(
-    projectTaskID: number,
-    projectID: number,
+    projectTaskId: number,
+    projectId: number,
     title: string,
     description: string,
     status: "Not Started" | "Active" | "Completed",
     startDate?: Date,
     dueDate?: Date,
-    assignedEmployeeIDs?: number[] | null,
+    assignedEmployeeIds?: number[] | null,
   ) {
-    this.projectTaskID = projectTaskID;
-    this.projectID = projectID,
+    this.projectTaskId = projectTaskId;
+    this.projectId = projectId,
     this.title = title,
     this.description = description,
     this.status = status,
     this.startDate = startDate,
     this.dueDate = dueDate,
-    this.assignedEmployeeIDs = assignedEmployeeIDs
+    this.assignedEmployeeIds = assignedEmployeeIds
   }
 }

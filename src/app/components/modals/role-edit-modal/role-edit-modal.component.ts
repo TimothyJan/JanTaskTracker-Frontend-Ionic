@@ -41,10 +41,10 @@ import { ToastService } from 'src/app/services/toast.service';
   ]
 })
 export class RoleEditModalComponent  implements OnInit {
-  @Input() roleID: number = -1;
+  @Input() roleId: number = -1;
   departments: Department[] = [];
-  originalRole: Role = {roleID: -1, roleName: "", departmentID: -1};
-  editedRole: Role = {roleID: -1, roleName: "", departmentID: -1}; // Working copy
+  originalRole: Role = {roleId: -1, roleName: "", departmentId: -1};
+  editedRole: Role = {roleId: -1, roleName: "", departmentId: -1}; // Working copy
 
   constructor(
     private modalCtrl: ModalController,
@@ -60,7 +60,7 @@ export class RoleEditModalComponent  implements OnInit {
 
   /** Get Employee */
   getRole(): void {
-    const role = this._roleService.getRole(this.roleID);
+    const role = this._roleService.getRole(this.roleId);
     if (!role) {
       console.error('Role not found');
       this.modalCtrl.dismiss(null, 'error');
@@ -78,7 +78,7 @@ export class RoleEditModalComponent  implements OnInit {
   /** Confirm save and close modal */
   confirm() {
     this.saveChanges();
-    return this.modalCtrl.dismiss(this.roleID, 'confirm');
+    return this.modalCtrl.dismiss(this.roleId, 'confirm');
   }
 
   /** Save Changes */

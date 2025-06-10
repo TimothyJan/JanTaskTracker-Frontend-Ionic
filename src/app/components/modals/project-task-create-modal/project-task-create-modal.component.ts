@@ -45,16 +45,16 @@ import { AssignEmployeesComponent } from "../../assign-employees/assign-employee
 ]
 })
 export class ProjectTaskCreateModalComponent  implements OnInit {
-  @Input() projectID: number = -1;
+  @Input() projectId: number = -1;
 
   projectTaskForm: FormGroup = new FormGroup({
-    projectID: new FormControl(0, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+    projectId: new FormControl(0, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     title: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     description: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     status: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
     startDate: new FormControl(""),
     dueDate: new FormControl(""),
-    assignedEmployeeIDs: new FormControl([]),
+    assignedEmployeeIds: new FormControl([]),
   });
 
   constructor(
@@ -64,7 +64,7 @@ export class ProjectTaskCreateModalComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.assignProjectID();
+    this.assignProjectId();
   }
 
   /** Camcel and close modal */
@@ -81,9 +81,9 @@ export class ProjectTaskCreateModalComponent  implements OnInit {
     return this.modalCtrl.dismiss('confirm');
   }
 
-  /** Assigns projectID to projectTaskForm */
-  assignProjectID(): void {
-    this.projectTaskForm.controls["projectID"].setValue(this.projectID);
+  /** Assigns projectId to projectTaskForm */
+  assignProjectId(): void {
+    this.projectTaskForm.controls["projectId"].setValue(this.projectId);
   }
 
   /** Handles task change from input component and assigns title to projectTaskForm */
@@ -115,22 +115,22 @@ export class ProjectTaskCreateModalComponent  implements OnInit {
     this.projectTaskForm.controls['dueDate'].setValue(dateObj);
   }
 
-  /** Handles assign employees change from assign-employees component and assigns list of employeeIDs to projectTaskForm */
-  handleEmployeeSelection(selectedEmployeeIDs: any) {
-    this.projectTaskForm.controls['assignedEmployeeIDs'].setValue(selectedEmployeeIDs);
+  /** Handles assign employees change from assign-employees component and assigns list of employeeIds to projectTaskForm */
+  handleEmployeeSelection(selectedEmployeeIds: any) {
+    this.projectTaskForm.controls['assignedEmployeeIds'].setValue(selectedEmployeeIds);
   }
 
   /** Create Project Task */
   createProjectTask(): void {
     const newProjectTask = new ProjectTask(
       0,
-      this.projectTaskForm.controls["projectID"].value,
+      this.projectTaskForm.controls["projectId"].value,
       this.projectTaskForm.controls["title"].value,
       this.projectTaskForm.controls["description"].value,
       this.projectTaskForm.controls["status"].value,
       this.projectTaskForm.controls["startDate"].value,
       this.projectTaskForm.controls["dueDate"].value,
-      this.projectTaskForm.controls["assignedEmployeeIDs"].value
+      this.projectTaskForm.controls["assignedEmployeeIds"].value
     );
     this._projectTaskService.createProjectTask(newProjectTask);
     this._projectTaskService.notifyProjectTasksChanged();

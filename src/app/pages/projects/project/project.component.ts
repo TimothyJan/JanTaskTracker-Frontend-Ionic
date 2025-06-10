@@ -48,9 +48,9 @@ import { ProjectTaskCreateModalComponent } from 'src/app/components/modals/proje
 })
 
 export class ProjectComponent implements OnInit {
-  @Input() projectID: number = 0;
+  @Input() projectId: number = 0;
   project : Project = new Project(0, "", "", "Not Started", new Date(), new Date());
-  listOfProjectTaskIDs: number[] = [];
+  listOfProjectTaskIds: number[] = [];
 
   projectNameInvalid: boolean = false;
   descriptionInvalid: boolean = false;
@@ -69,28 +69,28 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProjectByID();
-    this.getListOfProjectTaskIDsByProjectID();
+    this.getProjectById();
+    this.getListOfProjectTaskIdsByProjectId();
 
     // Add this subscription for project changes
     this._projectService.projectsChanged$.subscribe(() => {
-      this.getProjectByID(); // Refresh the project data
+      this.getProjectById(); // Refresh the project data
     });
 
     // Subscribe to changes in the task list
     this._projectTaskService.projectTasksChanged$.subscribe(() => {
-      this.getListOfProjectTaskIDsByProjectID(); // Refresh the list after a task is deleted
+      this.getListOfProjectTaskIdsByProjectId(); // Refresh the list after a task is deleted
     });
   }
 
-  /** Get Project by ID */
-  getProjectByID(): void {
-    this.project = this._projectService.getProjectByID(this.projectID);
+  /** Get Project by Id */
+  getProjectById(): void {
+    this.project = this._projectService.getProjectById(this.projectId);
   }
 
-  /** Get list of ProjectTaskIDs by ProjectID */
-  getListOfProjectTaskIDsByProjectID(): void {
-    this.listOfProjectTaskIDs = this._projectTaskService.getListOfProjectTaskIDsByProjectIDs(this.projectID);
+  /** Get list of ProjectTaskIds by ProjectId */
+  getListOfProjectTaskIdsByProjectId(): void {
+    this.listOfProjectTaskIds = this._projectTaskService.getListOfProjectTaskIdsByProjectIds(this.projectId);
   }
 
   /** Opens Action Sheet for Project */
@@ -109,7 +109,7 @@ export class ProjectComponent implements OnInit {
         {
           text: 'Delete Project',
           role: 'destructive',
-          handler: () => this.onDelete(this.project.projectID),
+          handler: () => this.onDelete(this.project.projectId),
         },
         {
           text: 'Cancel',
@@ -128,7 +128,7 @@ export class ProjectComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ProjectTaskCreateModalComponent,
       componentProps: {
-        projectID: this.projectID
+        projectId: this.projectId
       }
     });
     modal.present();
@@ -145,7 +145,7 @@ export class ProjectComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ProjectEditModalComponent,
       componentProps: {
-        projectID: this.projectID
+        projectId: this.projectId
       }
     });
     modal.present();
@@ -157,10 +157,10 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  onDelete(projectID: number): void {
+  onDelete(projectId: number): void {
     const confirmDelete = confirm('Are you sure you want to delete this project?');
     if (confirmDelete) {
-      this._projectService.deleteProject(projectID);
+      this._projectService.deleteProject(projectId);
       this._toastService.presentSuccessToast("Department deleted.");
     }
   }

@@ -46,7 +46,7 @@ import { AssignEmployeesComponent } from "../../assign-employees/assign-employee
 ]
 })
 export class ProjectTaskEditModalComponent implements OnInit {
-  @Input() projectTaskID: number = -1;
+  @Input() projectTaskId: number = -1;
 
   originalProjectTask: ProjectTask = new ProjectTask(-1, 0, "", "", "Not Started", new Date(), new Date(), []);
   editedProjectTask: ProjectTask = new ProjectTask(-1, 0, "", "", "Not Started", new Date(), new Date(), []);
@@ -69,7 +69,7 @@ export class ProjectTaskEditModalComponent implements OnInit {
 
   /** Get Project Task */
   getProjectTask(): void {
-    const projectTask = this._projectTaskService.getProjectTaskByID(this.projectTaskID);
+    const projectTask = this._projectTaskService.getProjectTaskById(this.projectTaskId);
     if (projectTask) {
       this.originalProjectTask = {...projectTask};
       this.editedProjectTask = {...projectTask};
@@ -87,7 +87,7 @@ export class ProjectTaskEditModalComponent implements OnInit {
   /** Confirm save and close modal */
   confirm() {
     this.saveChanges();
-    return this.modalCtrl.dismiss(this.projectTaskID, 'confirm');
+    return this.modalCtrl.dismiss(this.projectTaskId, 'confirm');
   }
 
   /** Handles title change from input component and assigns title value to editedProjectTask */
@@ -119,9 +119,9 @@ export class ProjectTaskEditModalComponent implements OnInit {
     this.editedProjectTask.dueDate = dateObj;
   }
 
-  /** Handles assign employees change from assign-employees component and assigns list of employeeIDs to editedProjectTaskForm */
-  handleEmployeeSelection(selectedEmployeeIDs: any) {
-    this.editedProjectTask.assignedEmployeeIDs = selectedEmployeeIDs;
+  /** Handles assign employees change from assign-employees component and assigns list of employeeIds to editedProjectTaskForm */
+  handleEmployeeSelection(selectedEmployeeIds: any) {
+    this.editedProjectTask.assignedEmployeeIds = selectedEmployeeIds;
   }
 
   /** Update projectTask */
