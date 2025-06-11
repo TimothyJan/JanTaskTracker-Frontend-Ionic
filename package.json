@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "build": "ionic build --prod",
     "predeploy": "npm run build",
-    "deploy": "ng build --configuration production --base-href https://timothyjan.github.io/JanTaskTracker-Frontend-Ionic/browser/ && cp docs/browser/index.html docs/404.html && npx angular-cli-ghpages --dir=www"
+    "deploy": "ng build --configuration production --base-href https://timothyjan.github.io/JanTaskTracker-Frontend-Ionic/ && cp docs/browser/index.html docs/404.html && npx angular-cli-ghpages --dir=www"
   },
   "private": true,
   "dependencies": {
