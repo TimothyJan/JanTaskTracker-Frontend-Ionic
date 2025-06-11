@@ -18,10 +18,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": {
-              "base": "www",
-              "browser": ""
-            },
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -37,7 +33,10 @@
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": [],
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "baseHref": "/JanTaskTracker-Frontend-Ionic/",
+            "deployUrl": "/JanTaskTracker-Frontend-Ionic/",
+            "outputPath": "docs"
           },
           "configurations": {
             "production": {
@@ -49,8 +48,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb"
                 }
               ],
               "fileReplacements": [
@@ -124,6 +123,9 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

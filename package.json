@@ -6,10 +6,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build": "ionic build --prod",
+    "predeploy": "npm run build",
+    "deploy": "ng build --configuration production --base-href /JanTaskTracker-Frontend-Ionic/ && npx angular-cli-ghpages --dir=docs"
   },
   "private": true,
   "dependencies": {
