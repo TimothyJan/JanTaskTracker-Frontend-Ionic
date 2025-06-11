@@ -34,9 +34,9 @@
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": [],
             "browser": "src/main.ts",
-            "baseHref": "/JanTaskTracker-Frontend-Ionic/",
-            "deployUrl": "/JanTaskTracker-Frontend-Ionic/",
-            "outputPath": "docs"
+            "baseHref": "/JanTaskTracker-Frontend-Ionic/browser/",
+            "deployUrl": "/JanTaskTracker-Frontend-Ionic/browser/",
+            "outputPath": "docs/browser"
           },
           "configurations": {
             "production": {
